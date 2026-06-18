@@ -1,0 +1,32 @@
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+HELP.md
+
+# Node / frontend (added once the frontend exists)
+node_modules/
+dist/
+build/
+.vite/
+
+# Environment files - never commit secrets
+.env
+.env.local
+.env.*.local
+application-local.yml
+application-secrets.yml
+
+# IDE
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
