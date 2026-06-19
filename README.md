@@ -49,7 +49,7 @@ then run `BackendApplication` with the `dev` profile active.
 ## Roadmap
 
 - [x] Domain model and database schema (Flyway V1)
-- [ ] Authentication and role-based access control (JWT)
+- [x] Authentication and role-based access control (JWT)
 - [ ] Worker verification flow (document upload + admin review)
 - [ ] Task posting, browsing, and application flow
 - [ ] Matching/recommendation logic
