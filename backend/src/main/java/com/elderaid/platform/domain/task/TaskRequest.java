@@ -66,6 +66,8 @@ public class TaskRequest {
     @Column(name = "address_line")
     private String addressLine;
 
+    private String city;
+
     @Column(name = "scheduled_start", nullable = false)
     private OffsetDateTime scheduledStart;
 

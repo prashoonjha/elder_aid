@@ -14,7 +14,9 @@ import com.elderaid.platform.exception.InvalidRegistrationRoleException;
 import com.elderaid.platform.repository.ConsentRecordRepository;
 import com.elderaid.platform.repository.RefreshTokenRepository;
 import com.elderaid.platform.repository.UserRepository;
+import com.elderaid.platform.repository.WorkerProfileRepository;
 import com.elderaid.platform.security.JwtService;
+import com.elderaid.platform.domain.worker.WorkerProfile;
 import com.elderaid.platform.web.dto.AuthResponse;
 import com.elderaid.platform.web.dto.LoginRequest;
 import com.elderaid.platform.web.dto.RegisterRequest;
@@ -39,6 +41,7 @@ public class AuthService {
     private final UserRepository userRepository;
     private final RefreshTokenRepository refreshTokenRepository;
     private final ConsentRecordRepository consentRecordRepository;
+    private final WorkerProfileRepository workerProfileRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final long refreshTokenExpirationDays;
@@ -47,6 +50,7 @@ public class AuthService {
             UserRepository userRepository,
             RefreshTokenRepository refreshTokenRepository,
             ConsentRecordRepository consentRecordRepository,
+            WorkerProfileRepository workerProfileRepository,
             PasswordEncoder passwordEncoder,
             JwtService jwtService,
             JwtProperties jwtProperties
@@ -54,6 +58,7 @@ public class AuthService {
         this.userRepository = userRepository;
         this.refreshTokenRepository = refreshTokenRepository;
         this.consentRecordRepository = consentRecordRepository;
+        this.workerProfileRepository = workerProfileRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.refreshTokenExpirationDays = jwtProperties.getRefreshTokenExpirationDays();
@@ -73,6 +78,8 @@ public class AuthService {
 
         AppUser user = AppUser.builder()
                 .email(request.email())
+                .firstName(request.firstName())
+                .lastName(request.lastName())
                 .passwordHash(passwordEncoder.encode(request.password()))
                 .phone(request.phone())
                 .locale(request.locale() != null ? request.locale() : "fi")
@@ -81,6 +88,16 @@ public class AuthService {
                 .build();
 
         user = userRepository.save(user);
+
+        // Workers need a profile row to attach applications, ratings, and
+        // verification documents to - create it up front rather than lazily,
+        // so "is this user a worker" always has a single source of truth.
+        if (request.role() == UserRole.WORKER) {
+            WorkerProfile workerProfile = WorkerProfile.builder()
+                    .user(user)
+                    .build();
+            workerProfileRepository.save(workerProfile);
+        }
 
         // GDPR: record the consent that was given at registration, tied to the
         // policy version in effect right now - not just a boolean flag on the

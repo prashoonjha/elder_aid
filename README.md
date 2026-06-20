@@ -51,7 +51,7 @@ then run `BackendApplication` with the `dev` profile active.
 - [x] Domain model and database schema (Flyway V1)
 - [x] Authentication and role-based access control (JWT)
 - [ ] Worker verification flow (document upload + admin review)
-- [ ] Task posting, browsing, and application flow
+- [x] Task posting, browsing, and application flow
 - [ ] Matching/recommendation logic
 - [ ] Booking lifecycle with check-in/check-out
 - [ ] Stripe Connect payment integration

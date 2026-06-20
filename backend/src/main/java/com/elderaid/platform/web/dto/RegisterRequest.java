@@ -12,6 +12,14 @@ public record RegisterRequest(
         @NotNull
         String email,
 
+        @NotNull
+        @Size(min = 1, max = 100)
+        String firstName,
+
+        @NotNull
+        @Size(min = 1, max = 100)
+        String lastName,
+
         @Size(min = 10, message = "Password must be at least 10 characters")
         @NotNull
         String password,
