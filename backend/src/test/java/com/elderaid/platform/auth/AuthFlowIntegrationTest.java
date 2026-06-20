@@ -45,6 +45,8 @@ class AuthFlowIntegrationTest {
     void registerThenLoginThenRefreshThenLogout() throws Exception {
         RegisterRequest registerRequest = new RegisterRequest(
                 "testi.kayttaja@example.com",
+                "Testi",
+                "Kayttaja",
                 "SalasanaOnPitka123",
                 "+358401234567",
                 UserRole.CLIENT,
@@ -90,6 +92,8 @@ class AuthFlowIntegrationTest {
     void loginWithWrongPasswordIsRejected() throws Exception {
         RegisterRequest registerRequest = new RegisterRequest(
                 "toinen.kayttaja@example.com",
+                "Toinen",
+                "Kayttaja",
                 "SalasanaOnPitka123",
                 null,
                 UserRole.WORKER,
