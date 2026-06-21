@@ -28,8 +28,12 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/elderaid
       SPRING_DATASOURCE_USERNAME: elderaid
       SPRING_DATASOURCE_PASSWORD: elderaid_dev_password
+      UPLOAD_DIR: /app/uploads
+    volumes:
+      - elderaid_uploads:/app/uploads
     ports:
       - "8080:8080"
 
 volumes:
   elderaid_postgres_data:
+  elderaid_uploads:

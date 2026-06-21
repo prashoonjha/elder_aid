@@ -30,3 +30,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Locally stored uploaded files (verification documents, etc.)
+/backend/uploads/
+/uploads/
