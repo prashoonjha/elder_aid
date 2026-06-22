@@ -1,0 +1,10 @@
+{
+  "common": {
+    "appName": "ElderAid",
+    "tagline": "Help and company for everyday life"
+  },
+  "home": {
+    "greeting": "Welcome",
+    "description": "We connect elderly people and their families with trusted helpers."
+  }
+}
