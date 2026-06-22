@@ -64,6 +64,9 @@ public class VerificationDocument {
     @Column(name = "reviewed_at")
     private OffsetDateTime reviewedAt;
 
+    @Column(name = "rejection_reason", columnDefinition = "TEXT")
+    private String rejectionReason;
+
     @CreationTimestamp
     @Column(name = "submitted_at", updatable = false)
     private OffsetDateTime submittedAt;

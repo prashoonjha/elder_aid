@@ -11,6 +11,7 @@ public record VerificationDocumentResponse(
         DocumentType documentType,
         DocumentStatus status,
         OffsetDateTime submittedAt,
-        OffsetDateTime reviewedAt
+        OffsetDateTime reviewedAt,
+        String rejectionReason
 ) {
 }

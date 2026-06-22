@@ -90,7 +90,8 @@ public class WorkerVerificationService {
                 document.getDocumentType(),
                 document.getStatus(),
                 document.getSubmittedAt(),
-                document.getReviewedAt()
+                document.getReviewedAt(),
+                document.getRejectionReason()
         );
     }
 }
