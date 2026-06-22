@@ -1,10 +1,65 @@
 {
   "common": {
     "appName": "ElderAid",
-    "tagline": "Apua ja seuraa arjen tueksi"
+    "tagline": "Apua ja seuraa arjen tueksi",
+    "back": "Takaisin"
   },
-  "home": {
-    "greeting": "Tervetuloa",
-    "description": "Yhdistämme ikäihmiset ja heidän läheisensä luotettuihin avustajiin."
+  "welcome": {
+    "title": "Tervetuloa",
+    "subtitle": "Miten voimme auttaa sinua?",
+    "needHelp": {
+      "title": "Tarvitsen apua",
+      "subtitle": "Itselleni tai laheiselleni"
+    },
+    "wantToHelp": {
+      "title": "Haluan auttaa",
+      "subtitle": "Tienaa apua tarjoamalla"
+    },
+    "haveAccount": "Onko sinulla jo tili?",
+    "logIn": "Kirjaudu sisaan"
+  },
+  "forWhom": {
+    "title": "Kenelle?",
+    "subtitle": "Kuka tarvitsee apua?",
+    "myself": {
+      "title": "Itselleni",
+      "subtitle": "Hoidan oman tilini"
+    },
+    "familyMember": {
+      "title": "Perheenjasenelle",
+      "subtitle": "Hoidan tilia laheiseni puolesta"
+    }
+  },
+  "register": {
+    "title": "Luo tili",
+    "firstName": "Etunimi",
+    "lastName": "Sukunimi",
+    "email": "Sahkoposti",
+    "password": "Salasana",
+    "termsLabel": "Hyvaksyn kayttoehdot ja tietosuojaselosteen",
+    "submit": "Luo tili",
+    "submitting": "Luodaan tilia...",
+    "errors": {
+      "emailInUse": "Tama sahkopostiosoite on jo kaytossa",
+      "validation": "Tarkista tiedot ja yrita uudelleen",
+      "generic": "Jotain menu pieleen. Yrita uudelleen."
+    }
+  },
+  "login": {
+    "email": "Sahkoposti",
+    "password": "Salasana",
+    "submit": "Kirjaudu sisaan",
+    "submitting": "Kirjaudutaan...",
+    "noAccount": "Eiko tilia?",
+    "createOne": "Luo tili",
+    "errors": {
+      "invalidCredentials": "Vaara sahkoposti tai salasana",
+      "generic": "Jotain menu pieleen. Yrita uudelleen."
+    }
+  },
+  "dashboard": {
+    "welcomeBack": "Tervetuloa takaisin",
+    "placeholderNote": "Tama on tilapainen nakyma. Oikeat toiminnot rakennetaan seuraavaksi.",
+    "logOut": "Kirjaudu ulos"
   }
 }

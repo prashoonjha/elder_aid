@@ -1,10 +1,65 @@
 {
   "common": {
     "appName": "ElderAid",
-    "tagline": "Help and company for everyday life"
+    "tagline": "Help and company for everyday life",
+    "back": "Back"
   },
-  "home": {
-    "greeting": "Welcome",
-    "description": "We connect elderly people and their families with trusted helpers."
+  "welcome": {
+    "title": "Welcome",
+    "subtitle": "How can we help you?",
+    "needHelp": {
+      "title": "I need help",
+      "subtitle": "For myself or a loved one"
+    },
+    "wantToHelp": {
+      "title": "I want to help",
+      "subtitle": "Earn money by offering help"
+    },
+    "haveAccount": "Already have an account?",
+    "logIn": "Log in"
+  },
+  "forWhom": {
+    "title": "For whom?",
+    "subtitle": "Who needs help?",
+    "myself": {
+      "title": "Myself",
+      "subtitle": "I'll manage my own account"
+    },
+    "familyMember": {
+      "title": "A family member",
+      "subtitle": "I'll manage it on their behalf"
+    }
+  },
+  "register": {
+    "title": "Create account",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "password": "Password",
+    "termsLabel": "I accept the terms of service and privacy policy",
+    "submit": "Create account",
+    "submitting": "Creating account...",
+    "errors": {
+      "emailInUse": "An account with this email already exists",
+      "validation": "Please check your details and try again",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "login": {
+    "email": "Email",
+    "password": "Password",
+    "submit": "Log in",
+    "submitting": "Logging in...",
+    "noAccount": "Don't have an account?",
+    "createOne": "Create one",
+    "errors": {
+      "invalidCredentials": "Incorrect email or password",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "dashboard": {
+    "welcomeBack": "Welcome back",
+    "placeholderNote": "This is a placeholder screen. Real features are built next.",
+    "logOut": "Log out"
   }
 }
