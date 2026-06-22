@@ -1,0 +1,10 @@
+{
+  "common": {
+    "appName": "ElderAid",
+    "tagline": "Apua ja seuraa arjen tueksi"
+  },
+  "home": {
+    "greeting": "Tervetuloa",
+    "description": "Yhdistämme ikäihmiset ja heidän läheisensä luotettuihin avustajiin."
+  }
+}
