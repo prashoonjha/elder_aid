@@ -1,10 +1,14 @@
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { useAuth } from '../context/AuthContext';
 
 export function DashboardPage() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { user, logout } = useAuth();
+
+  const canManageProfiles = user?.roles.some((role) => role === 'CLIENT' || role === 'FAMILY_MEMBER') ?? false;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-white px-6 text-center">
@@ -13,6 +17,12 @@ export function DashboardPage() {
         {user?.email} - {user?.roles.join(', ')}
       </p>
       <p className="mt-6 max-w-xs text-xs text-brand-textMuted">{t('dashboard.placeholderNote')}</p>
+
+      {canManageProfiles && (
+        <button onClick={() => navigate('/profiles/new')} className="mt-5 text-sm font-medium text-brand-accent">
+          {t('dashboard.addProfile')}
+        </button>
+      )}
 
       <div className="mt-8 w-48">
         <Button variant="secondary" onClick={logout}>

@@ -52,10 +52,11 @@ export function RegisterPage() {
         termsAccepted,
         locale: i18n.language === 'en' ? 'en' : 'fi',
       });
-      // forSelf (whether this CLIENT is managing their own profile) gets
-      // used by the elderly-profile onboarding step, which doesn't exist
-      // yet - the dashboard is a deliberate placeholder until that's built.
-      navigate('/dashboard', { replace: true });
+      // Workers have nothing to set up before browsing tasks; clients and
+      // family members need an elderly profile to exist before anything
+      // else in the app makes sense, so send them there first.
+      const destination = routeState.role === 'WORKER' ? '/dashboard' : '/profiles/new';
+      navigate(destination, { replace: true });
     } catch (error) {
       if (isAxiosError(error) && error.response?.status === 409) {
         setErrorMessage(t('register.errors.emailInUse'));

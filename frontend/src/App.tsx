@@ -6,6 +6,7 @@ import { ForWhomPage } from './pages/ForWhomPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
+import { ElderlyProfileFormPage } from './pages/ElderlyProfileFormPage';
 
 export function App() {
   return (
@@ -19,6 +20,7 @@ export function App() {
 
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/profiles/new" element={<ElderlyProfileFormPage />} />
           </Route>
         </Routes>
       </AuthProvider>

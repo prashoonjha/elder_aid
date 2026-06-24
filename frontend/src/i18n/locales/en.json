@@ -60,6 +60,27 @@
   "dashboard": {
     "welcomeBack": "Welcome back",
     "placeholderNote": "This is a placeholder screen. Real features are built next.",
-    "logOut": "Log out"
+    "logOut": "Log out",
+    "addProfile": "+ Add a profile"
+  },
+  "elderlyProfile": {
+    "title": "Create a profile",
+    "subtitle": "You can add more profiles later",
+    "myself": "Myself",
+    "familyMember": "A family member",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "relationship": "Relationship",
+    "relationshipPlaceholder": "e.g. daughter, son",
+    "address": "Street address",
+    "postalCode": "Postal code",
+    "city": "City",
+    "skip": "Skip for now",
+    "submit": "Save profile",
+    "submitting": "Saving...",
+    "errors": {
+      "validation": "Please check your details and try again",
+      "generic": "Something went wrong. Please try again."
+    }
   }
 }
