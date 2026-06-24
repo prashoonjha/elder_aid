@@ -60,6 +60,27 @@
   "dashboard": {
     "welcomeBack": "Tervetuloa takaisin",
     "placeholderNote": "Tama on tilapainen nakyma. Oikeat toiminnot rakennetaan seuraavaksi.",
-    "logOut": "Kirjaudu ulos"
+    "logOut": "Kirjaudu ulos",
+    "addProfile": "+ Lisaa profiili"
+  },
+  "elderlyProfile": {
+    "title": "Luo profiili",
+    "subtitle": "Voit lisata useita profiileja myohemmin",
+    "myself": "Itselleni",
+    "familyMember": "Perheenjasenelle",
+    "firstName": "Etunimi",
+    "lastName": "Sukunimi",
+    "relationship": "Suhde",
+    "relationshipPlaceholder": "esim. tytar, poika",
+    "address": "Katuosoite",
+    "postalCode": "Postinumero",
+    "city": "Kaupunki",
+    "skip": "Ohita toistaiseksi",
+    "submit": "Tallenna profiili",
+    "submitting": "Tallennetaan...",
+    "errors": {
+      "validation": "Tarkista tiedot ja yrita uudelleen",
+      "generic": "Jotain menu pieleen. Yrita uudelleen."
+    }
   }
 }
