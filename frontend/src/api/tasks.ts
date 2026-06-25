@@ -32,6 +32,38 @@ export interface TaskDetail {
   createdAt: string;
 }
 
+export interface TaskSummary {
+  id: string;
+  category: TaskCategory;
+  description: string | null;
+  city: string | null;
+  scheduledStart: string;
+  scheduledEnd: string;
+  priceOffered: number;
+  status: string;
+}
+
+export interface PageResponse<T> {
+  content: T[];
+  totalElements: number;
+  totalPages: number;
+  number: number;
+  size: number;
+  last: boolean;
+}
+
+export async function browseOpenTasks(category?: TaskCategory): Promise<PageResponse<TaskSummary>> {
+  const response = await apiClient.get<PageResponse<TaskSummary>>('/api/tasks', {
+    params: category ? { category } : undefined,
+  });
+  return response.data;
+}
+
+export async function getTaskSummary(taskId: string): Promise<TaskSummary> {
+  const response = await apiClient.get<TaskSummary>(`/api/tasks/${taskId}`);
+  return response.data;
+}
+
 export async function createTask(payload: CreateTaskPayload): Promise<TaskDetail> {
   const response = await apiClient.post<TaskDetail>('/api/tasks', payload);
   return response.data;

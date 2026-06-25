@@ -8,6 +8,8 @@ import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { ElderlyProfileFormPage } from './pages/ElderlyProfileFormPage';
 import { TaskFormPage } from './pages/TaskFormPage';
+import { TaskBrowsePage } from './pages/TaskBrowsePage';
+import { TaskDetailPage } from './pages/TaskDetailPage';
 
 export function App() {
   return (
@@ -23,6 +25,8 @@ export function App() {
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/profiles/new" element={<ElderlyProfileFormPage />} />
             <Route path="/tasks/new" element={<TaskFormPage />} />
+            <Route path="/tasks" element={<TaskBrowsePage />} />
+            <Route path="/tasks/:taskId" element={<TaskDetailPage />} />
           </Route>
         </Routes>
       </AuthProvider>

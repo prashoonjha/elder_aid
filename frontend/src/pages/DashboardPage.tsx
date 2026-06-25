@@ -9,6 +9,7 @@ export function DashboardPage() {
   const { user, logout } = useAuth();
 
   const canManageProfiles = user?.roles.some((role) => role === 'CLIENT' || role === 'FAMILY_MEMBER') ?? false;
+  const isWorker = user?.roles.includes('WORKER') ?? false;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-white px-6 text-center">
@@ -27,6 +28,12 @@ export function DashboardPage() {
             {t('dashboard.postTask')}
           </button>
         </>
+      )}
+
+      {isWorker && (
+        <button onClick={() => navigate('/tasks')} className="mt-5 text-sm font-medium text-brand-accent">
+          {t('dashboard.browseTasks')}
+        </button>
       )}
 
       <div className="mt-8 w-48">
