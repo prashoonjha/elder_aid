@@ -2,7 +2,8 @@
   "common": {
     "appName": "ElderAid",
     "tagline": "Apua ja seuraa arjen tueksi",
-    "back": "Takaisin"
+    "back": "Takaisin",
+    "loading": "Ladataan..."
   },
   "welcome": {
     "title": "Tervetuloa",
@@ -61,7 +62,8 @@
     "welcomeBack": "Tervetuloa takaisin",
     "placeholderNote": "Tama on tilapainen nakyma. Oikeat toiminnot rakennetaan seuraavaksi.",
     "logOut": "Kirjaudu ulos",
-    "addProfile": "+ Lisaa profiili"
+    "addProfile": "+ Lisaa profiili",
+    "postTask": "+ Julkaise tehtava"
   },
   "elderlyProfile": {
     "title": "Luo profiili",
@@ -79,6 +81,42 @@
     "submit": "Tallenna profiili",
     "submitting": "Tallennetaan...",
     "errors": {
+      "validation": "Tarkista tiedot ja yrita uudelleen",
+      "generic": "Jotain menu pieleen. Yrita uudelleen."
+    }
+  },
+  "newTask": {
+    "title": "Luo uusi tehtava",
+    "forWhom": "Kenelle",
+    "category": "Tehtavatyyppi",
+    "categories": {
+      "grocery": "Kauppa",
+      "walking": "Ulkoilu",
+      "chatting": "Seura",
+      "household": "Koti",
+      "other": "Muu"
+    },
+    "description": "Kuvaus",
+    "scheduledStart": "Paiva ja klo",
+    "durationHours": "Kesto (h)",
+    "address": "Osoite",
+    "city": "Kaupunki",
+    "price": "Tarjoamasi hinta tyontekijalle",
+    "breakdown": {
+      "task": "Tehtava",
+      "serviceFee": "Palvelumaksu (8%)",
+      "total": "Veloitetaan sinulta"
+    },
+    "cancel": "Peruuta",
+    "submit": "Julkaise tehtava",
+    "submitting": "Julkaistaan...",
+    "emptyState": {
+      "title": "Ei profiileja vielä",
+      "description": "Luo ensin profiili henkilolle, jolle haluat tehtavan.",
+      "cta": "Luo profiili"
+    },
+    "errors": {
+      "forbidden": "Sinulla ei ole oikeutta luoda tehtavaa talle profiilille",
       "validation": "Tarkista tiedot ja yrita uudelleen",
       "generic": "Jotain menu pieleen. Yrita uudelleen."
     }
