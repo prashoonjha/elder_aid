@@ -63,7 +63,8 @@
     "placeholderNote": "This is a placeholder screen. Real features are built next.",
     "logOut": "Log out",
     "addProfile": "+ Add a profile",
-    "postTask": "+ Post a task"
+    "postTask": "+ Post a task",
+    "browseTasks": "Browse tasks"
   },
   "elderlyProfile": {
     "title": "Create a profile",
@@ -118,6 +119,31 @@
     "errors": {
       "forbidden": "You don't have permission to post a task for this profile",
       "validation": "Please check your details and try again",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "taskBrowse": {
+    "title": "Open tasks",
+    "allCategories": "All",
+    "empty": "No open tasks right now.",
+    "statusOpen": "Open"
+  },
+  "taskDetail": {
+    "when": "When",
+    "where": "Where",
+    "breakdown": {
+      "taskPrice": "Task price",
+      "commission": "Platform fee (12%)",
+      "youEarn": "You earn"
+    },
+    "apply": "Apply to this task",
+    "applying": "Sending...",
+    "applied": {
+      "title": "Application sent",
+      "description": "You'll be notified when the family responds to your application.",
+      "browseMore": "Browse more tasks"
+    },
+    "errors": {
       "generic": "Something went wrong. Please try again."
     }
   }

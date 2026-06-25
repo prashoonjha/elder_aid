@@ -63,7 +63,8 @@
     "placeholderNote": "Tama on tilapainen nakyma. Oikeat toiminnot rakennetaan seuraavaksi.",
     "logOut": "Kirjaudu ulos",
     "addProfile": "+ Lisaa profiili",
-    "postTask": "+ Julkaise tehtava"
+    "postTask": "+ Julkaise tehtava",
+    "browseTasks": "Selaa tehtavia"
   },
   "elderlyProfile": {
     "title": "Luo profiili",
@@ -118,6 +119,31 @@
     "errors": {
       "forbidden": "Sinulla ei ole oikeutta luoda tehtavaa talle profiilille",
       "validation": "Tarkista tiedot ja yrita uudelleen",
+      "generic": "Jotain menu pieleen. Yrita uudelleen."
+    }
+  },
+  "taskBrowse": {
+    "title": "Avoimet tehtavat",
+    "allCategories": "Kaikki",
+    "empty": "Ei avoimia tehtavia juuri nyt.",
+    "statusOpen": "Avoin"
+  },
+  "taskDetail": {
+    "when": "Milloin",
+    "where": "Missa",
+    "breakdown": {
+      "taskPrice": "Tehtavan hinta",
+      "commission": "Valityspalkkio (12%)",
+      "youEarn": "Sina saat"
+    },
+    "apply": "Haku tehtavaan",
+    "applying": "Lahetetaan...",
+    "applied": {
+      "title": "Hakemus lahetetty",
+      "description": "Saat ilmoituksen, kun perhe vastaa hakemukseesi.",
+      "browseMore": "Selaa lisaa tehtavia"
+    },
+    "errors": {
       "generic": "Jotain menu pieleen. Yrita uudelleen."
     }
   }
