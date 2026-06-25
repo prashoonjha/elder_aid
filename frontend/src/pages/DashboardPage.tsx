@@ -19,9 +19,14 @@ export function DashboardPage() {
       <p className="mt-6 max-w-xs text-xs text-brand-textMuted">{t('dashboard.placeholderNote')}</p>
 
       {canManageProfiles && (
-        <button onClick={() => navigate('/profiles/new')} className="mt-5 text-sm font-medium text-brand-accent">
-          {t('dashboard.addProfile')}
-        </button>
+        <>
+          <button onClick={() => navigate('/profiles/new')} className="mt-5 text-sm font-medium text-brand-accent">
+            {t('dashboard.addProfile')}
+          </button>
+          <button onClick={() => navigate('/tasks/new')} className="mt-2 text-sm font-medium text-brand-accent">
+            {t('dashboard.postTask')}
+          </button>
+        </>
       )}
 
       <div className="mt-8 w-48">

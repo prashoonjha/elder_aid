@@ -2,7 +2,8 @@
   "common": {
     "appName": "ElderAid",
     "tagline": "Help and company for everyday life",
-    "back": "Back"
+    "back": "Back",
+    "loading": "Loading..."
   },
   "welcome": {
     "title": "Welcome",
@@ -61,7 +62,8 @@
     "welcomeBack": "Welcome back",
     "placeholderNote": "This is a placeholder screen. Real features are built next.",
     "logOut": "Log out",
-    "addProfile": "+ Add a profile"
+    "addProfile": "+ Add a profile",
+    "postTask": "+ Post a task"
   },
   "elderlyProfile": {
     "title": "Create a profile",
@@ -79,6 +81,42 @@
     "submit": "Save profile",
     "submitting": "Saving...",
     "errors": {
+      "validation": "Please check your details and try again",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "newTask": {
+    "title": "Post a new task",
+    "forWhom": "For whom",
+    "category": "Task type",
+    "categories": {
+      "grocery": "Groceries",
+      "walking": "Walk",
+      "chatting": "Company",
+      "household": "Home",
+      "other": "Other"
+    },
+    "description": "Description",
+    "scheduledStart": "Date and time",
+    "durationHours": "Duration (h)",
+    "address": "Address",
+    "city": "City",
+    "price": "Price you're offering the worker",
+    "breakdown": {
+      "task": "Task",
+      "serviceFee": "Service fee (8%)",
+      "total": "You'll be charged"
+    },
+    "cancel": "Cancel",
+    "submit": "Post task",
+    "submitting": "Posting...",
+    "emptyState": {
+      "title": "No profiles yet",
+      "description": "Create a profile for the person you want help for first.",
+      "cta": "Create a profile"
+    },
+    "errors": {
+      "forbidden": "You don't have permission to post a task for this profile",
       "validation": "Please check your details and try again",
       "generic": "Something went wrong. Please try again."
     }
