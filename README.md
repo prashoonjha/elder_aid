@@ -53,7 +53,7 @@ then run `BackendApplication` with the `dev` profile active.
 - [x] Worker verification flow (document upload + admin review)
 - [x] Task posting, browsing, and application flow
 - [ ] Matching/recommendation logic
-- [ ] Booking lifecycle with check-in/check-out
+- [ ] Booking lifecycle (accept/reject applications done; check-in/check-out next)
 - [ ] Stripe Connect payment integration
 - [ ] GDPR endpoints (data export, deletion/anonymization, consent records)
 - [ ] React frontend with Finnish/English i18n (auth, profiles, task posting, and worker browse/apply done; booking lifecycle screens next)

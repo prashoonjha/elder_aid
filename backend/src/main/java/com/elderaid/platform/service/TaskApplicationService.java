@@ -99,6 +99,35 @@ public class TaskApplicationService {
                 .toList();
     }
 
+    @Transactional
+    public TaskApplicationResponse reject(UUID callerId, UUID taskId, UUID applicationId) {
+        TaskApplication application = findOwnedPendingApplication(callerId, taskId, applicationId);
+        application.setStatus(ApplicationStatus.REJECTED);
+        application = taskApplicationRepository.save(application);
+        return toResponse(application);
+    }
+
+    /**
+     * Shared by reject() here and by BookingService.acceptApplication(),
+     * which needs the same ownership/pending checks before it can act -
+     * keeping the check in one place means both paths enforce it identically.
+     */
+    TaskApplication findOwnedPendingApplication(UUID callerId, UUID taskId, UUID applicationId) {
+        TaskApplication application = taskApplicationRepository.findById(applicationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Application not found"));
+
+        if (!application.getTaskRequest().getId().equals(taskId)) {
+            throw new ResourceNotFoundException("Application not found for this task");
+        }
+        if (!application.getTaskRequest().getPostedByUser().getId().equals(callerId)) {
+            throw new ForbiddenOperationException("You do not own this task");
+        }
+        if (application.getStatus() != ApplicationStatus.PENDING) {
+            throw new ForbiddenOperationException("This application has already been reviewed");
+        }
+        return application;
+    }
+
     private TaskApplicationResponse toResponse(TaskApplication application) {
         WorkerProfile worker = application.getWorkerProfile();
         return new TaskApplicationResponse(
