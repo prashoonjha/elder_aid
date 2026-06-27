@@ -122,6 +122,87 @@ class BookingFlowIntegrationTest {
                 .andExpect(status().isForbidden());
     }
 
+    @Test
+    void workerCanCheckInAndOutOnlyForTheirOwnBooking() throws Exception {
+        String familyToken = registerAndGetAccessToken("perhe2@example.com", UserRole.FAMILY_MEMBER);
+
+        CreateElderlyProfileRequest elderlyRequest = new CreateElderlyProfileRequest(
+                "Liisa", "Nieminen", null, "Hameenkatu 5", "Tampere", "33100", "fi", "daughter", false);
+        String profileJson = mockMvc.perform(post("/api/elderly-profiles")
+                        .header("Authorization", "Bearer " + familyToken)
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(elderlyRequest)))
+                .andExpect(status().isCreated())
+                .andReturn().getResponse().getContentAsString();
+        UUID profileId = UUID.fromString(objectMapper.readTree(profileJson).get("id").asText());
+
+        CreateTaskRequest taskRequest = new CreateTaskRequest(
+                profileId, TaskCategory.WALKING_COMPANION, "Ulkoilua",
+                null, null, "Hameenkatu 5", "Tampere",
+                OffsetDateTime.now().plusDays(1), OffsetDateTime.now().plusDays(1).plusHours(1),
+                new BigDecimal("18.00"));
+        String taskJson = mockMvc.perform(post("/api/tasks")
+                        .header("Authorization", "Bearer " + familyToken)
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(taskRequest)))
+                .andExpect(status().isCreated())
+                .andReturn().getResponse().getContentAsString();
+        UUID taskId = UUID.fromString(objectMapper.readTree(taskJson).get("id").asText());
+
+        String assignedWorkerToken = registerVerifiedWorkerAndGetAccessToken("hyvaksytty.tyontekija@example.com");
+        String otherWorkerToken = registerVerifiedWorkerAndGetAccessToken("toinen.tyontekija@example.com");
+
+        UUID applicationId = applyAndGetApplicationId(taskId, assignedWorkerToken);
+
+        String bookingJson = mockMvc.perform(patch("/api/tasks/" + taskId + "/applications/" + applicationId + "/accept")
+                        .header("Authorization", "Bearer " + familyToken))
+                .andExpect(status().isOk())
+                .andReturn().getResponse().getContentAsString();
+        UUID bookingId = UUID.fromString(objectMapper.readTree(bookingJson).get("id").asText());
+
+        // A worker who isn't assigned to this booking must not be able to check in.
+        mockMvc.perform(patch("/api/bookings/" + bookingId + "/check-in")
+                        .header("Authorization", "Bearer " + otherWorkerToken))
+                .andExpect(status().isForbidden());
+
+        mockMvc.perform(patch("/api/bookings/" + bookingId + "/check-in")
+                        .header("Authorization", "Bearer " + assignedWorkerToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("CHECKED_IN"))
+                .andExpect(jsonPath("$.checkInTime").exists());
+
+        // Checking in twice should be rejected - the state machine only
+        // moves forward, never re-enters a state it already left.
+        mockMvc.perform(patch("/api/bookings/" + bookingId + "/check-in")
+                        .header("Authorization", "Bearer " + assignedWorkerToken))
+                .andExpect(status().isForbidden());
+
+        mockMvc.perform(patch("/api/bookings/" + bookingId + "/check-out")
+                        .header("Authorization", "Bearer " + assignedWorkerToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("COMPLETED"))
+                .andExpect(jsonPath("$.checkOutTime").exists());
+
+        // The underlying task should now read COMPLETED too, not just the booking.
+        mockMvc.perform(get("/api/tasks/mine/" + taskId)
+                        .header("Authorization", "Bearer " + familyToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("COMPLETED"));
+
+        // Both the worker and the family member can look the booking up by task.
+        mockMvc.perform(get("/api/tasks/" + taskId + "/booking")
+                        .header("Authorization", "Bearer " + assignedWorkerToken))
+                .andExpect(status().isOk());
+        mockMvc.perform(get("/api/tasks/" + taskId + "/booking")
+                        .header("Authorization", "Bearer " + familyToken))
+                .andExpect(status().isOk());
+
+        // An uninvolved worker should not be able to look it up.
+        mockMvc.perform(get("/api/tasks/" + taskId + "/booking")
+                        .header("Authorization", "Bearer " + otherWorkerToken))
+                .andExpect(status().isForbidden());
+    }
+
     private String registerAndGetAccessToken(String email, UserRole role) throws Exception {
         RegisterRequest request = new RegisterRequest(email, "Etu", "Suku", "TurvallinenSalasana1", null, role, true, "fi");
         String responseJson = mockMvc.perform(post("/api/auth/register")
