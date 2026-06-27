@@ -27,6 +27,9 @@ export function DashboardPage() {
           <button onClick={() => navigate('/tasks/new')} className="mt-2 text-sm font-medium text-brand-accent">
             {t('dashboard.postTask')}
           </button>
+          <button onClick={() => navigate('/tasks/mine')} className="mt-2 text-sm font-medium text-brand-accent">
+            {t('dashboard.myTasks')}
+          </button>
         </>
       )}
 

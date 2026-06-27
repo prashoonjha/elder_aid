@@ -69,6 +69,11 @@ export async function createTask(payload: CreateTaskPayload): Promise<TaskDetail
   return response.data;
 }
 
+export async function getMyTaskDetail(taskId: string): Promise<TaskDetail> {
+  const response = await apiClient.get<TaskDetail>(`/api/tasks/mine/${taskId}`);
+  return response.data;
+}
+
 export async function listMyTasks(): Promise<TaskDetail[]> {
   const response = await apiClient.get<TaskDetail[]>('/api/tasks/mine');
   return response.data;

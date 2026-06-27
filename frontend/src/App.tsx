@@ -10,6 +10,8 @@ import { ElderlyProfileFormPage } from './pages/ElderlyProfileFormPage';
 import { TaskFormPage } from './pages/TaskFormPage';
 import { TaskBrowsePage } from './pages/TaskBrowsePage';
 import { TaskDetailPage } from './pages/TaskDetailPage';
+import { MyTasksPage } from './pages/MyTasksPage';
+import { TaskApplicationsReviewPage } from './pages/TaskApplicationsReviewPage';
 
 export function App() {
   return (
@@ -25,6 +27,8 @@ export function App() {
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/profiles/new" element={<ElderlyProfileFormPage />} />
             <Route path="/tasks/new" element={<TaskFormPage />} />
+            <Route path="/tasks/mine" element={<MyTasksPage />} />
+            <Route path="/tasks/mine/:taskId/review" element={<TaskApplicationsReviewPage />} />
             <Route path="/tasks" element={<TaskBrowsePage />} />
             <Route path="/tasks/:taskId" element={<TaskDetailPage />} />
           </Route>

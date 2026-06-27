@@ -64,7 +64,8 @@
     "logOut": "Log out",
     "addProfile": "+ Add a profile",
     "postTask": "+ Post a task",
-    "browseTasks": "Browse tasks"
+    "browseTasks": "Browse tasks",
+    "myTasks": "My tasks"
   },
   "elderlyProfile": {
     "title": "Create a profile",
@@ -145,6 +146,27 @@
     },
     "errors": {
       "generic": "Something went wrong. Please try again."
+    }
+  },
+  "myTasks": {
+    "title": "My tasks",
+    "empty": "You haven't posted any tasks yet.",
+    "status": {
+      "OPEN": "Open",
+      "MATCHED": "Matched",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled"
+    }
+  },
+  "taskReview": {
+    "applicationCount": "{{count}} applications",
+    "noApplications": "No applications yet.",
+    "reject": "Reject",
+    "accept": "Accept",
+    "applicationStatus": {
+      "ACCEPTED": "Accepted",
+      "REJECTED": "Rejected",
+      "WITHDRAWN": "Withdrawn"
     }
   }
 }
