@@ -64,7 +64,8 @@
     "logOut": "Kirjaudu ulos",
     "addProfile": "+ Lisaa profiili",
     "postTask": "+ Julkaise tehtava",
-    "browseTasks": "Selaa tehtavia"
+    "browseTasks": "Selaa tehtavia",
+    "myTasks": "Omat tehtavat"
   },
   "elderlyProfile": {
     "title": "Luo profiili",
@@ -145,6 +146,27 @@
     },
     "errors": {
       "generic": "Jotain menu pieleen. Yrita uudelleen."
+    }
+  },
+  "myTasks": {
+    "title": "Omat tehtavat",
+    "empty": "Et ole vielä julkaissut tehtavia.",
+    "status": {
+      "OPEN": "Avoin",
+      "MATCHED": "Sovittu",
+      "COMPLETED": "Valmis",
+      "CANCELLED": "Peruttu"
+    }
+  },
+  "taskReview": {
+    "applicationCount": "{{count}} hakemusta",
+    "noApplications": "Ei hakemuksia vielä.",
+    "reject": "Hylkaa",
+    "accept": "Hyvaksy",
+    "applicationStatus": {
+      "ACCEPTED": "Hyvaksytty",
+      "REJECTED": "Hylatty",
+      "WITHDRAWN": "Peruutettu"
     }
   }
 }
