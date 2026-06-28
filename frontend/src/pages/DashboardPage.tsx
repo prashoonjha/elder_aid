@@ -34,9 +34,14 @@ export function DashboardPage() {
       )}
 
       {isWorker && (
-        <button onClick={() => navigate('/tasks')} className="mt-5 text-sm font-medium text-brand-accent">
-          {t('dashboard.browseTasks')}
-        </button>
+        <>
+          <button onClick={() => navigate('/tasks')} className="mt-5 text-sm font-medium text-brand-accent">
+            {t('dashboard.browseTasks')}
+          </button>
+          <button onClick={() => navigate('/bookings/mine')} className="mt-2 text-sm font-medium text-brand-accent">
+            {t('dashboard.myBookings')}
+          </button>
+        </>
       )}
 
       <div className="mt-8 w-48">

@@ -65,7 +65,8 @@
     "addProfile": "+ Add a profile",
     "postTask": "+ Post a task",
     "browseTasks": "Browse tasks",
-    "myTasks": "My tasks"
+    "myTasks": "My tasks",
+    "myBookings": "My bookings"
   },
   "elderlyProfile": {
     "title": "Create a profile",
@@ -167,6 +168,19 @@
       "ACCEPTED": "Accepted",
       "REJECTED": "Rejected",
       "WITHDRAWN": "Withdrawn"
+    }
+  },
+  "myBookings": {
+    "title": "My bookings",
+    "empty": "No bookings yet.",
+    "checkIn": "Check in",
+    "checkOut": "Check out",
+    "status": {
+      "CONFIRMED": "Confirmed",
+      "CHECKED_IN": "Checked in",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled",
+      "DISPUTED": "Disputed"
     }
   }
 }
