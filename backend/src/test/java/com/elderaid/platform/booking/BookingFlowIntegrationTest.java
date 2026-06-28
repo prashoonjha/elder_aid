@@ -93,6 +93,8 @@ class BookingFlowIntegrationTest {
                         .header("Authorization", "Bearer " + familyToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value("CONFIRMED"))
+                .andExpect(jsonPath("$.taskCategory").value("HOUSEHOLD_HELP"))
+                .andExpect(jsonPath("$.taskCity").value("Turku"))
                 .andReturn().getResponse().getContentAsString();
         UUID workerProfileIdOnBooking = UUID.fromString(objectMapper.readTree(bookingJson).get("workerProfileId").asText());
         org.junit.jupiter.api.Assertions.assertNotNull(workerProfileIdOnBooking);
