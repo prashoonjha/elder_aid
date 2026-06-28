@@ -154,14 +154,19 @@ public class BookingService {
     }
 
     private BookingResponse toResponse(Booking booking) {
+        var task = booking.getTaskRequest();
         return new BookingResponse(
                 booking.getId(),
-                booking.getTaskRequest().getId(),
+                task.getId(),
                 booking.getWorkerProfile().getId(),
                 booking.getStatus(),
                 booking.getCheckInTime(),
                 booking.getCheckOutTime(),
-                booking.getCreatedAt()
+                booking.getCreatedAt(),
+                task.getCategory(),
+                task.getCity(),
+                task.getScheduledStart(),
+                task.getPriceOffered()
         );
     }
 }

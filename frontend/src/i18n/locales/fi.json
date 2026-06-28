@@ -65,7 +65,8 @@
     "addProfile": "+ Lisaa profiili",
     "postTask": "+ Julkaise tehtava",
     "browseTasks": "Selaa tehtavia",
-    "myTasks": "Omat tehtavat"
+    "myTasks": "Omat tehtavat",
+    "myBookings": "Omat varaukset"
   },
   "elderlyProfile": {
     "title": "Luo profiili",
@@ -167,6 +168,19 @@
       "ACCEPTED": "Hyvaksytty",
       "REJECTED": "Hylatty",
       "WITHDRAWN": "Peruutettu"
+    }
+  },
+  "myBookings": {
+    "title": "Omat varaukset",
+    "empty": "Ei varauksia vielä.",
+    "checkIn": "Merkitse saavuit",
+    "checkOut": "Merkitse valmis",
+    "status": {
+      "CONFIRMED": "Vahvistettu",
+      "CHECKED_IN": "Paikalla",
+      "COMPLETED": "Valmis",
+      "CANCELLED": "Peruttu",
+      "DISPUTED": "Riitautettu"
     }
   }
 }

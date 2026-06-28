@@ -12,6 +12,7 @@ import { TaskBrowsePage } from './pages/TaskBrowsePage';
 import { TaskDetailPage } from './pages/TaskDetailPage';
 import { MyTasksPage } from './pages/MyTasksPage';
 import { TaskApplicationsReviewPage } from './pages/TaskApplicationsReviewPage';
+import { MyBookingsPage } from './pages/MyBookingsPage';
 
 export function App() {
   return (
@@ -31,6 +32,7 @@ export function App() {
             <Route path="/tasks/mine/:taskId/review" element={<TaskApplicationsReviewPage />} />
             <Route path="/tasks" element={<TaskBrowsePage />} />
             <Route path="/tasks/:taskId" element={<TaskDetailPage />} />
+            <Route path="/bookings/mine" element={<MyBookingsPage />} />
           </Route>
         </Routes>
       </AuthProvider>

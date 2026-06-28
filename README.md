@@ -56,5 +56,5 @@ then run `BackendApplication` with the `dev` profile active.
 - [x] Booking lifecycle (accept/reject applications, check-in/check-out)
 - [ ] Stripe Connect payment integration
 - [ ] GDPR endpoints (data export, deletion/anonymization, consent records)
-- [ ] React frontend with Finnish/English i18n (auth, profiles, task posting/browsing/applying, and application review done; check-in/check-out screens next)
+- [ ] React frontend with Finnish/English i18n (auth, profiles, task posting/browsing/applying, application review, and worker bookings/check-in-out done; payment screens next)
 - [ ] CI/CD and deployment (EU region)
