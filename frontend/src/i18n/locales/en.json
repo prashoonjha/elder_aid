@@ -66,7 +66,8 @@
     "postTask": "+ Post a task",
     "browseTasks": "Browse tasks",
     "myTasks": "My tasks",
-    "myBookings": "My bookings"
+    "myBookings": "My bookings",
+    "privacy": "Privacy"
   },
   "elderlyProfile": {
     "title": "Create a profile",
@@ -181,6 +182,26 @@
       "COMPLETED": "Completed",
       "CANCELLED": "Cancelled",
       "DISPUTED": "Disputed"
+    }
+  },
+  "privacy": {
+    "title": "Privacy",
+    "export": {
+      "heading": "Your data",
+      "description": "Download a copy of everything we have stored about you.",
+      "cta": "Download my data (JSON)",
+      "downloading": "Downloading..."
+    },
+    "delete": {
+      "heading": "Delete account",
+      "description": "Your account will be permanently deleted. This cannot be undone.",
+      "passwordLabel": "Confirm with your password",
+      "cta": "Permanently delete my account",
+      "submitting": "Deleting..."
+    },
+    "errors": {
+      "wrongPassword": "Incorrect password",
+      "generic": "Something went wrong. Please try again."
     }
   }
 }

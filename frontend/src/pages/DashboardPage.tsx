@@ -44,7 +44,11 @@ export function DashboardPage() {
         </>
       )}
 
-      <div className="mt-8 w-48">
+      <button onClick={() => navigate('/settings/privacy')} className="mt-6 text-sm font-medium text-brand-textMuted">
+        {t('dashboard.privacy')}
+      </button>
+
+      <div className="mt-4 w-48">
         <Button variant="secondary" onClick={logout}>
           {t('dashboard.logOut')}
         </Button>
