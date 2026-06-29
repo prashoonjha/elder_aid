@@ -14,6 +14,30 @@ import { TASK_CATEGORIES } from '../constants/taskCategories';
 // source of truth for both sides of this calculation.
 const WORKER_COMMISSION_RATE = 0.12;
 
+/**
+ * The backend doesn't return a machine-readable error code for these
+ * cases, only a human-readable message - so we match on known substrings
+ * rather than the exact string, which is a bit fragile but better than
+ * showing raw English to a Finnish-language user. Falls back to a
+ * translated generic message for anything unrecognized, rather than ever
+ * surfacing the backend's own text directly.
+ */
+function mapApplyErrorToTranslationKey(error: unknown): string {
+  if (isAxiosError<{ message?: string }>(error) && typeof error.response?.data?.message === 'string') {
+    const message = error.response.data.message;
+    if (message.includes('identity verification')) {
+      return 'taskDetail.errors.notVerified';
+    }
+    if (message.includes('no longer accepting applications')) {
+      return 'taskDetail.errors.taskClosed';
+    }
+    if (message.includes('already applied')) {
+      return 'taskDetail.errors.alreadyApplied';
+    }
+  }
+  return 'taskDetail.errors.generic';
+}
+
 export function TaskDetailPage() {
   const { taskId } = useParams<{ taskId: string }>();
   const { t } = useTranslation();
@@ -31,18 +55,7 @@ export function TaskDetailPage() {
     mutationFn: () => applyToTask(taskId!, {}),
     onSuccess: () => setHasApplied(true),
     onError: (error) => {
-      // Surfacing the backend's own message here rather than a translated
-      // string - there's no machine-readable error code yet to map onto a
-      // local translation key, and the backend's messages ("already
-      // applied", "needs verification", "no longer open") are different
-      // enough that one generic translated fallback would mislead more
-      // than it'd help. Worth replacing once the backend returns error
-      // codes instead of only human-readable text.
-      if (isAxiosError<{ message?: string }>(error) && typeof error.response?.data?.message === 'string') {
-        setErrorMessage(error.response.data.message);
-      } else {
-        setErrorMessage(t('taskDetail.errors.generic'));
-      }
+      setErrorMessage(t(mapApplyErrorToTranslationKey(error)));
     },
   });
 
