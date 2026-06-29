@@ -44,6 +44,10 @@
       "emailInUse": "Tama sahkopostiosoite on jo kaytossa",
       "validation": "Tarkista tiedot ja yrita uudelleen",
       "generic": "Jotain menu pieleen. Yrita uudelleen."
+    },
+    "passwordStrength": {
+      "tooShort": "Vahintaan 10 merkkia",
+      "good": "Salasana on riittavan pitka"
     }
   },
   "login": {
