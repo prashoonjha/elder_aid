@@ -115,6 +115,11 @@ export function RegisterPage() {
             minLength={10}
             required
           />
+          {password.length > 0 && (
+            <p className={`-mt-2 mb-3 text-xs ${password.length >= 10 ? 'text-brand-accent' : 'text-brand-textMuted'}`}>
+              {password.length >= 10 ? t('register.passwordStrength.good') : t('register.passwordStrength.tooShort')}
+            </p>
+          )}
 
           <CheckboxField
             label={t('register.termsLabel')}
