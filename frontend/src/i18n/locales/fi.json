@@ -66,7 +66,8 @@
     "postTask": "+ Julkaise tehtava",
     "browseTasks": "Selaa tehtavia",
     "myTasks": "Omat tehtavat",
-    "myBookings": "Omat varaukset"
+    "myBookings": "Omat varaukset",
+    "privacy": "Tietosuoja"
   },
   "elderlyProfile": {
     "title": "Luo profiili",
@@ -181,6 +182,26 @@
       "COMPLETED": "Valmis",
       "CANCELLED": "Peruttu",
       "DISPUTED": "Riitautettu"
+    }
+  },
+  "privacy": {
+    "title": "Tietosuoja",
+    "export": {
+      "heading": "Omat tiedot",
+      "description": "Lataa kopio kaikista tiedoista, joita meilla on sinusta tallennettuna.",
+      "cta": "Lataa tietoni (JSON)",
+      "downloading": "Ladataan..."
+    },
+    "delete": {
+      "heading": "Poista tili",
+      "description": "Tilisi poistetaan pysyvasti. Tata ei voi perua.",
+      "passwordLabel": "Vahvista salasanalla",
+      "cta": "Poista tilini pysyvasti",
+      "submitting": "Poistetaan..."
+    },
+    "errors": {
+      "wrongPassword": "Vaara salasana",
+      "generic": "Jotain menu pieleen. Yrita uudelleen."
     }
   }
 }
