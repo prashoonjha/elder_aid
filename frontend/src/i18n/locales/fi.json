@@ -151,6 +151,9 @@
       "browseMore": "Selaa lisaa tehtavia"
     },
     "errors": {
+      "notVerified": "Tilisi tarvitsee tunnistautumisen hyvaksynnan ennen kuin voit hakea tehtaviin.",
+      "taskClosed": "Tama tehtava ei ota enaa vastaan hakemuksia.",
+      "alreadyApplied": "Olet jo hakenut tahan tehtavaan.",
       "generic": "Jotain menu pieleen. Yrita uudelleen."
     }
   },

@@ -151,6 +151,9 @@
       "browseMore": "Browse more tasks"
     },
     "errors": {
+      "notVerified": "Your account needs to complete identity verification before you can apply to tasks.",
+      "taskClosed": "This task is no longer accepting applications.",
+      "alreadyApplied": "You have already applied to this task.",
       "generic": "Something went wrong. Please try again."
     }
   },
