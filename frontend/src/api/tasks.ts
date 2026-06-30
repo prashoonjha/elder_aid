@@ -52,9 +52,13 @@ export interface PageResponse<T> {
   last: boolean;
 }
 
-export async function browseOpenTasks(category?: TaskCategory): Promise<PageResponse<TaskSummary>> {
+export async function browseOpenTasks(category?: TaskCategory, page = 0): Promise<PageResponse<TaskSummary>> {
   const response = await apiClient.get<PageResponse<TaskSummary>>('/api/tasks', {
-    params: category ? { category } : undefined,
+    params: {
+      ...(category ? { category } : {}),
+      page,
+      size: 10,
+    },
   });
   return response.data;
 }
