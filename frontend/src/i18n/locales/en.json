@@ -133,7 +133,8 @@
     "title": "Open tasks",
     "allCategories": "All",
     "empty": "No open tasks right now.",
-    "statusOpen": "Open"
+    "statusOpen": "Open",
+    "loadMore": "Load more"
   },
   "taskDetail": {
     "when": "When",

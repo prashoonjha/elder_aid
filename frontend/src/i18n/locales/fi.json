@@ -133,7 +133,8 @@
     "title": "Avoimet tehtavat",
     "allCategories": "Kaikki",
     "empty": "Ei avoimia tehtavia juuri nyt.",
-    "statusOpen": "Avoin"
+    "statusOpen": "Avoin",
+    "loadMore": "Lataa lisaa"
   },
   "taskDetail": {
     "when": "Milloin",
