@@ -58,7 +58,7 @@ export function RegisterPage() {
       const destination = routeState.role === 'WORKER' ? '/dashboard' : '/profiles/new';
       navigate(destination, { replace: true });
     } catch (error) {
-      if (isAxiosError(error) && error.response?.status === 409) {
+      if (isAxiosError<{ errorCode?: string }>(error) && error.response?.data?.errorCode === 'EMAIL_ALREADY_IN_USE') {
         setErrorMessage(t('register.errors.emailInUse'));
       } else if (isAxiosError(error) && error.response?.status === 400) {
         setErrorMessage(t('register.errors.validation'));

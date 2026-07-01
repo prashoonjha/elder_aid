@@ -45,19 +45,22 @@ public class TaskApplicationService {
         // block applications until the verification step is in place. Bump a
         // worker's tier manually in the DB for now to test past this.
         if (workerProfile.getVerificationTier() == VerificationTier.NONE) {
-            throw new ForbiddenOperationException("Account must complete identity verification before applying to tasks");
+            throw new ForbiddenOperationException("NEEDS_VERIFICATION",
+                    "Account must complete identity verification before applying to tasks");
         }
 
         TaskRequest task = taskRequestRepository.findById(taskId)
                 .orElseThrow(() -> new ResourceNotFoundException("Task not found"));
 
         if (task.getStatus() != TaskStatus.OPEN) {
-            throw new ForbiddenOperationException("This task is no longer accepting applications");
+            throw new ForbiddenOperationException("TASK_NOT_OPEN",
+                    "This task is no longer accepting applications");
         }
 
         taskApplicationRepository.findByTaskRequestIdAndWorkerProfileId(taskId, workerProfile.getId())
                 .ifPresent(existing -> {
-                    throw new ForbiddenOperationException("You have already applied to this task");
+                    throw new ForbiddenOperationException("ALREADY_APPLIED",
+                            "You have already applied to this task");
                 });
 
         TaskApplication application = TaskApplication.builder()

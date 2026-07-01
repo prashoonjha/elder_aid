@@ -15,25 +15,17 @@ import { TASK_CATEGORIES } from '../constants/taskCategories';
 const WORKER_COMMISSION_RATE = 0.12;
 
 /**
- * The backend doesn't return a machine-readable error code for these
- * cases, only a human-readable message - so we match on known substrings
- * rather than the exact string, which is a bit fragile but better than
- * showing raw English to a Finnish-language user. Falls back to a
- * translated generic message for anything unrecognized, rather than ever
- * surfacing the backend's own text directly.
+ * Maps the backend's machine-readable errorCode to a translation key.
+ * The backend now returns a structured errorCode field on every error
+ * response, so this is a reliable exact match rather than the fragile
+ * substring matching we had before.
  */
 function mapApplyErrorToTranslationKey(error: unknown): string {
-  if (isAxiosError<{ message?: string }>(error) && typeof error.response?.data?.message === 'string') {
-    const message = error.response.data.message;
-    if (message.includes('identity verification')) {
-      return 'taskDetail.errors.notVerified';
-    }
-    if (message.includes('no longer accepting applications')) {
-      return 'taskDetail.errors.taskClosed';
-    }
-    if (message.includes('already applied')) {
-      return 'taskDetail.errors.alreadyApplied';
-    }
+  if (isAxiosError<{ errorCode?: string }>(error) && error.response?.data?.errorCode) {
+    const code = error.response.data.errorCode;
+    if (code === 'NEEDS_VERIFICATION') return 'taskDetail.errors.notVerified';
+    if (code === 'TASK_NOT_OPEN') return 'taskDetail.errors.taskClosed';
+    if (code === 'ALREADY_APPLIED') return 'taskDetail.errors.alreadyApplied';
   }
   return 'taskDetail.errors.generic';
 }
