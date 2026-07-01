@@ -211,5 +211,16 @@
       "wrongPassword": "Vaara salasana",
       "generic": "Jotain menu pieleen. Yrita uudelleen."
     }
+  },
+  "bookingStatus": {
+    "title": "Varauksen tiedot",
+    "checkedInAt": "Saapui klo",
+    "completedAt": "Valmistui klo",
+    "autoRefreshNote": "Sivu paivittyy automaattisesti 30 sekunnin valein.",
+    "status": {
+      "CONFIRMED": "Vahvistettu",
+      "CHECKED_IN": "Paikalla",
+      "COMPLETED": "Valmis"
+    }
   }
 }
