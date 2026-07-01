@@ -16,37 +16,37 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(EmailAlreadyInUseException.class)
     public ResponseEntity<Map<String, Object>> handleEmailAlreadyInUse(EmailAlreadyInUseException ex) {
-        return error(HttpStatus.CONFLICT, ex.getMessage());
+        return error(HttpStatus.CONFLICT, "EMAIL_ALREADY_IN_USE", ex.getMessage());
     }
 
     @ExceptionHandler(InvalidCredentialsException.class)
     public ResponseEntity<Map<String, Object>> handleInvalidCredentials(InvalidCredentialsException ex) {
-        return error(HttpStatus.UNAUTHORIZED, ex.getMessage());
+        return error(HttpStatus.UNAUTHORIZED, "INVALID_CREDENTIALS", ex.getMessage());
     }
 
     @ExceptionHandler(InvalidRefreshTokenException.class)
     public ResponseEntity<Map<String, Object>> handleInvalidRefreshToken(InvalidRefreshTokenException ex) {
-        return error(HttpStatus.UNAUTHORIZED, ex.getMessage());
+        return error(HttpStatus.UNAUTHORIZED, "INVALID_REFRESH_TOKEN", ex.getMessage());
     }
 
     @ExceptionHandler(InvalidRegistrationRoleException.class)
     public ResponseEntity<Map<String, Object>> handleInvalidRegistrationRole(InvalidRegistrationRoleException ex) {
-        return error(HttpStatus.BAD_REQUEST, ex.getMessage());
+        return error(HttpStatus.BAD_REQUEST, "INVALID_REGISTRATION_ROLE", ex.getMessage());
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleNotFound(ResourceNotFoundException ex) {
-        return error(HttpStatus.NOT_FOUND, ex.getMessage());
+        return error(HttpStatus.NOT_FOUND, "RESOURCE_NOT_FOUND", ex.getMessage());
     }
 
     @ExceptionHandler(ForbiddenOperationException.class)
     public ResponseEntity<Map<String, Object>> handleForbidden(ForbiddenOperationException ex) {
-        return error(HttpStatus.FORBIDDEN, ex.getMessage());
+        return error(HttpStatus.FORBIDDEN, ex.getErrorCode(), ex.getMessage());
     }
 
     @ExceptionHandler(InvalidRequestException.class)
     public ResponseEntity<Map<String, Object>> handleInvalidRequest(InvalidRequestException ex) {
-        return error(HttpStatus.BAD_REQUEST, ex.getMessage());
+        return error(HttpStatus.BAD_REQUEST, "INVALID_REQUEST", ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -55,20 +55,21 @@ public class GlobalExceptionHandler {
         for (FieldError fe : ex.getBindingResult().getFieldErrors()) {
             fieldErrors.put(fe.getField(), fe.getDefaultMessage());
         }
-        Map<String, Object> body = baseBody(HttpStatus.BAD_REQUEST, "Validation failed");
+        Map<String, Object> body = baseBody(HttpStatus.BAD_REQUEST, "VALIDATION_FAILED", "Validation failed");
         body.put("fieldErrors", fieldErrors);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
-    private ResponseEntity<Map<String, Object>> error(HttpStatus status, String message) {
-        return ResponseEntity.status(status).body(baseBody(status, message));
+    private ResponseEntity<Map<String, Object>> error(HttpStatus status, String errorCode, String message) {
+        return ResponseEntity.status(status).body(baseBody(status, errorCode, message));
     }
 
-    private Map<String, Object> baseBody(HttpStatus status, String message) {
+    private Map<String, Object> baseBody(HttpStatus status, String errorCode, String message) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", OffsetDateTime.now());
         body.put("status", status.value());
         body.put("error", status.getReasonPhrase());
+        body.put("errorCode", errorCode);
         body.put("message", message);
         return body;
     }
