@@ -211,5 +211,16 @@
       "wrongPassword": "Incorrect password",
       "generic": "Something went wrong. Please try again."
     }
+  },
+  "bookingStatus": {
+    "title": "Booking details",
+    "checkedInAt": "Checked in at",
+    "completedAt": "Completed at",
+    "autoRefreshNote": "This page refreshes automatically every 30 seconds.",
+    "status": {
+      "CONFIRMED": "Confirmed",
+      "CHECKED_IN": "Worker is on site",
+      "COMPLETED": "Completed"
+    }
   }
 }

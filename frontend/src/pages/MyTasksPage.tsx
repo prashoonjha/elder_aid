@@ -38,7 +38,11 @@ export function MyTasksPage() {
             return (
               <button
                 key={task.id}
-                onClick={() => navigate(`/tasks/mine/${task.id}/review`)}
+                onClick={() =>
+                  task.status === 'OPEN'
+                    ? navigate(`/tasks/mine/${task.id}/review`)
+                    : navigate(`/tasks/mine/${task.id}/booking`)
+                }
                 className="rounded-card border border-brand-border bg-white p-3 text-left"
               >
                 <div className="mb-1.5 flex items-center gap-1.5">
