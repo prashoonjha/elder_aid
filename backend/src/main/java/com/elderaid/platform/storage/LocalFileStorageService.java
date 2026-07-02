@@ -62,6 +62,22 @@ public class LocalFileStorageService implements FileStorageService {
         }
     }
 
+    @Override
+    public void delete(String storageKey) {
+        Path target = rootDirectory.resolve(storageKey).normalize();
+        if (!target.startsWith(rootDirectory)) {
+            throw new IllegalArgumentException("Resolved file path escapes the upload directory");
+        }
+        try {
+            // deleteIfExists rather than delete - a missing file is not a
+            // failure during account deletion, since the file may already
+            // have been cleaned up or never successfully written.
+            Files.deleteIfExists(target);
+        } catch (IOException e) {
+            throw new UncheckedIOException("Failed to delete stored file: " + storageKey, e);
+        }
+    }
+
     private String extractExtension(String originalFilename) {
         if (originalFilename == null || !originalFilename.contains(".")) {
             return "";

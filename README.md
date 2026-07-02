@@ -55,6 +55,6 @@ then run `BackendApplication` with the `dev` profile active.
 - [ ] Matching/recommendation logic
 - [x] Booking lifecycle (accept/reject applications, check-in/check-out)
 - [ ] Stripe Connect payment integration
-- [x] GDPR endpoints (data export, account deletion/anonymization; verification document file cleanup on deletion is a known gap)
+- [x] GDPR endpoints (data export, account deletion/anonymization including uploaded verification file cleanup)
 - [ ] React frontend with Finnish/English i18n (auth, profiles, task posting/browsing/applying, application review, worker bookings/check-in-out, and privacy settings done; payment screens next)
 - [ ] CI/CD and deployment (EU region)

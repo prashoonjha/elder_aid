@@ -14,7 +14,10 @@ import com.elderaid.platform.repository.TaskRequestRepository;
 import com.elderaid.platform.repository.UserRepository;
 import com.elderaid.platform.repository.VerificationDocumentRepository;
 import com.elderaid.platform.repository.WorkerProfileRepository;
+import com.elderaid.platform.storage.FileStorageService;
 import com.elderaid.platform.web.dto.UserDataExportResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +35,8 @@ import java.util.UUID;
 @Service
 public class DataPrivacyService {
 
+    private static final Logger log = LoggerFactory.getLogger(DataPrivacyService.class);
+
     private final UserRepository userRepository;
     private final ConsentRecordRepository consentRecordRepository;
     private final FamilyLinkRepository familyLinkRepository;
@@ -42,6 +47,7 @@ public class DataPrivacyService {
     private final TaskApplicationRepository taskApplicationRepository;
     private final BookingRepository bookingRepository;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final FileStorageService fileStorageService;
     private final PasswordEncoder passwordEncoder;
 
     public DataPrivacyService(
@@ -55,6 +61,7 @@ public class DataPrivacyService {
             TaskApplicationRepository taskApplicationRepository,
             BookingRepository bookingRepository,
             RefreshTokenRepository refreshTokenRepository,
+            FileStorageService fileStorageService,
             PasswordEncoder passwordEncoder
     ) {
         this.userRepository = userRepository;
@@ -67,6 +74,7 @@ public class DataPrivacyService {
         this.taskApplicationRepository = taskApplicationRepository;
         this.bookingRepository = bookingRepository;
         this.refreshTokenRepository = refreshTokenRepository;
+        this.fileStorageService = fileStorageService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -146,6 +154,7 @@ public class DataPrivacyService {
             throw new InvalidCredentialsException();
         }
 
+        purgeWorkerUploadedFiles(userId);
         anonymizeUser(user);
         revokeAllRefreshTokens(userId);
         anonymizeSelfLinkedElderlyProfiles(userId);
@@ -185,5 +194,27 @@ public class DataPrivacyService {
             profile.setPostalCode(null);
             elderlyProfileRepository.save(profile);
         });
+    }
+
+    /**
+     * Deletes the actual files uploaded during worker verification, not just
+     * the database records. Runs before anonymization so the worker profile
+     * is still resolvable. A failure to delete one file is logged but does
+     * not abort the account deletion - a missing or already-removed file
+     * should never block a user from being erased.
+     */
+    private void purgeWorkerUploadedFiles(UUID userId) {
+        workerProfileRepository.findByUserId(userId).ifPresent(workerProfile ->
+                verificationDocumentRepository
+                        .findByWorkerProfileIdOrderBySubmittedAtDesc(workerProfile.getId())
+                        .forEach(doc -> {
+                            try {
+                                fileStorageService.delete(doc.getFileStorageKey());
+                            } catch (Exception e) {
+                                log.warn("Could not delete verification file {} during account deletion: {}",
+                                        doc.getFileStorageKey(), e.getMessage());
+                            }
+                        })
+        );
     }
 }
