@@ -6,21 +6,22 @@ const baseURL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8080';
 
 export const apiClient = axios.create({
   baseURL,
+  // Send cookies (the httpOnly refresh cookie) on cross-origin requests to
+  // the API. Without this the browser wouldn't attach the cookie at all.
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Tokens live only in memory - never localStorage/sessionStorage - so a
-// malicious script injected via XSS has nothing to read. The real cost:
-// a full page reload clears them, requiring a fresh login. That tradeoff
-// was a deliberate choice, not an oversight.
+// Only the short-lived access token lives in memory now. The refresh token
+// is held by the browser as an httpOnly cookie we can't (and don't want to)
+// read from JavaScript - that's what lets a session survive a page reload
+// while staying out of reach of any XSS payload.
 let accessToken: string | null = null;
-let refreshToken: string | null = null;
 
-export function setTokens(tokens: { accessToken: string; refreshToken: string } | null) {
-  accessToken = tokens?.accessToken ?? null;
-  refreshToken = tokens?.refreshToken ?? null;
+export function setAccessToken(token: string | null) {
+  accessToken = token;
 }
 
 export function getAccessToken() {
@@ -44,25 +45,23 @@ apiClient.interceptors.request.use((config) => {
 
 let refreshInFlight: Promise<string | null> | null = null;
 
-async function refreshAccessToken(): Promise<string | null> {
-  if (!refreshToken) return null;
-
-  // Multiple requests can 401 around the same moment (e.g. a page that
-  // fires several API calls at once) - without this guard, each would
-  // trigger its own refresh call, and the backend would only honor the
-  // first one (refresh tokens are single-use). Sharing one in-flight
-  // promise means everyone waits for, and reuses, the same refresh.
+// Calls /refresh relying purely on the httpOnly cookie - no body, no stored
+// refresh token. Returns the new access token, or null if the cookie is
+// missing/expired (i.e. no valid session to restore).
+export async function refreshAccessToken(): Promise<string | null> {
+  // Multiple requests can 401 around the same moment - without this guard
+  // each would trigger its own refresh, and the backend only honors the
+  // first (refresh tokens are single-use). Sharing one in-flight promise
+  // means everyone waits for, and reuses, the same refresh.
   if (!refreshInFlight) {
     refreshInFlight = axios
-      .post(`${baseURL}/api/auth/refresh`, { refreshToken })
+      .post(`${baseURL}/api/auth/refresh`, null, { withCredentials: true })
       .then((response) => {
-        const newTokens = { accessToken: response.data.accessToken, refreshToken: response.data.refreshToken };
-        setTokens(newTokens);
-        return newTokens.accessToken;
+        setAccessToken(response.data.accessToken);
+        return response.data.accessToken as string;
       })
       .catch(() => {
-        setTokens(null);
-        sessionExpiredListener?.();
+        setAccessToken(null);
         return null;
       })
       .finally(() => {
@@ -83,6 +82,8 @@ apiClient.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
         return apiClient(originalRequest);
       }
+      // Refresh failed - no valid session to restore, so tell the app.
+      sessionExpiredListener?.();
     }
     return Promise.reject(error);
   },
