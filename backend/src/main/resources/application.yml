@@ -37,3 +37,9 @@ app:
     upload-dir: ${UPLOAD_DIR:./uploads}
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+  auth:
+    # The refresh token cookie is Secure in production (HTTPS only) but must
+    # be non-Secure for local http://localhost dev, or the browser silently
+    # drops it. Overridden to true via env var in any real deployment.
+    refresh-cookie-secure: ${REFRESH_COOKIE_SECURE:false}
+    refresh-cookie-name: elderaid_refresh
