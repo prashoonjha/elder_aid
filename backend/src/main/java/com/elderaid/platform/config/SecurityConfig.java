@@ -56,7 +56,10 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(List.of(allowedOrigins.split(",")));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowCredentials(false);
+        // Required for the browser to send the httpOnly refresh cookie on
+        // cross-origin requests. With credentials allowed, the spec forbids
+        // a wildcard origin - which is fine, we already list explicit origins.
+        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

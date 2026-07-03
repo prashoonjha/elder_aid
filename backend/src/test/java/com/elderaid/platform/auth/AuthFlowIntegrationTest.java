@@ -5,6 +5,7 @@ import com.elderaid.platform.web.dto.LoginRequest;
 import com.elderaid.platform.web.dto.RefreshRequest;
 import com.elderaid.platform.web.dto.RegisterRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,6 +18,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.cookie;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -112,5 +114,39 @@ class AuthFlowIntegrationTest {
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(badLogin)))
                 .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void loginSetsHttpOnlyRefreshCookieAndRefreshWorksFromCookieAlone() throws Exception {
+        RegisterRequest registerRequest = new RegisterRequest(
+                "keksi.kayttaja@example.com", "Keksi", "Kayttaja", "TurvallinenSalasana1",
+                null, UserRole.CLIENT, true, "fi");
+        mockMvc.perform(post("/api/auth/register")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(registerRequest)))
+                .andExpect(status().isCreated());
+
+        LoginRequest login = new LoginRequest("keksi.kayttaja@example.com", "TurvallinenSalasana1");
+        var loginResult = mockMvc.perform(post("/api/auth/login")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(login)))
+                .andExpect(status().isOk())
+                .andExpect(cookie().exists("elderaid_refresh"))
+                .andExpect(cookie().httpOnly("elderaid_refresh", true))
+                .andReturn();
+
+        Cookie refreshCookie = loginResult.getResponse().getCookie("elderaid_refresh");
+
+        // Refresh using ONLY the cookie - no request body at all. This is
+        // what the migrated frontend will do.
+        mockMvc.perform(post("/api/auth/refresh").cookie(refreshCookie))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.accessToken").exists())
+                .andExpect(cookie().exists("elderaid_refresh"));
+
+        // Logout clears the cookie (max-age 0).
+        mockMvc.perform(post("/api/auth/logout").cookie(refreshCookie))
+                .andExpect(status().isNoContent())
+                .andExpect(cookie().maxAge("elderaid_refresh", 0));
     }
 }
