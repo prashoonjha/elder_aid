@@ -8,12 +8,7 @@ import { Button } from '../components/ui/Button';
 import { listMyElderlyProfiles } from '../api/elderlyProfiles';
 import { createTask, type TaskCategory } from '../api/tasks';
 import { TASK_CATEGORIES } from '../constants/taskCategories';
-
-// Mirrors the backend's placeholder commission split (AdminVerificationService
-// doesn't own this - it lives here until the real Payment/Stripe feature is
-// built, at which point the backend becomes the source of truth and this
-// becomes a display-only echo of what the API returns).
-const CLIENT_SERVICE_FEE_RATE = 0.08;
+import { calculateClientBreakdown } from '../lib/pricing';
 
 export function TaskFormPage() {
   const { t } = useTranslation();
@@ -56,9 +51,7 @@ export function TaskFormPage() {
     },
   });
 
-  const price = parseFloat(priceOffered) || 0;
-  const serviceFee = price * CLIENT_SERVICE_FEE_RATE;
-  const total = price + serviceFee;
+  const { price, serviceFee, total } = calculateClientBreakdown(parseFloat(priceOffered));
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
