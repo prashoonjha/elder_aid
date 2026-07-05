@@ -18,6 +18,7 @@ public record BookingResponse(
         TaskCategory taskCategory,
         String taskCity,
         OffsetDateTime taskScheduledStart,
-        BigDecimal taskPriceOffered
+        BigDecimal taskPriceOffered,
+        ReviewResponse existingReview
 ) {
 }

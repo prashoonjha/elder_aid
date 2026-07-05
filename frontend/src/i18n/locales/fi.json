@@ -222,5 +222,13 @@
       "CHECKED_IN": "Paikalla",
       "COMPLETED": "Valmis"
     }
+  },
+  "review": {
+    "rateWorker": "Arvioi tyontekija",
+    "yourRating": "Sinun arviosi",
+    "commentPlaceholder": "Lisaa kommentti (valinnainen)",
+    "submit": "Laheta arvio",
+    "submitting": "Lahetetaan...",
+    "error": "Arvion lahetys epaonnistui. Yrita uudelleen."
   }
 }

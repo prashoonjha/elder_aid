@@ -222,5 +222,13 @@
       "CHECKED_IN": "Worker is on site",
       "COMPLETED": "Completed"
     }
+  },
+  "review": {
+    "rateWorker": "Rate the worker",
+    "yourRating": "Your rating",
+    "commentPlaceholder": "Add a comment (optional)",
+    "submit": "Submit rating",
+    "submitting": "Submitting...",
+    "error": "Could not submit your rating. Please try again."
   }
 }
