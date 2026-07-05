@@ -1,8 +1,11 @@
+import { useState, type FormEvent } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ArrowLeft, CheckCircle, Clock, MapPin } from 'lucide-react';
 import { getBookingByTask } from '../api/bookings';
+import { submitReview } from '../api/reviews';
+import { StarRating } from '../components/ui/StarRating';
 import { TASK_CATEGORIES } from '../constants/taskCategories';
 
 const STATUS_STYLES: Record<string, string> = {
@@ -15,6 +18,10 @@ export function TaskBookingStatusPage() {
   const { taskId } = useParams<{ taskId: string }>();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
 
   const bookingQuery = useQuery({
     queryKey: ['booking', 'byTask', taskId],
@@ -24,6 +31,21 @@ export function TaskBookingStatusPage() {
     // happen without needing to manually refresh the page.
     refetchInterval: 30_000,
   });
+
+  const reviewMutation = useMutation({
+    mutationFn: () => submitReview(bookingQuery.data!.id, { rating, comment: comment.trim() || undefined }),
+    onSuccess: () => {
+      // Refetch the booking so it comes back with existingReview populated,
+      // which flips the UI to the read-only state.
+      queryClient.invalidateQueries({ queryKey: ['booking', 'byTask', taskId] });
+    },
+  });
+
+  function handleReviewSubmit(event: FormEvent) {
+    event.preventDefault();
+    if (rating < 1) return;
+    reviewMutation.mutate();
+  }
 
   if (bookingQuery.isLoading) {
     return (
@@ -83,6 +105,47 @@ export function TaskBookingStatusPage() {
             </div>
           )}
         </div>
+
+        {booking.status === 'COMPLETED' && (
+          <div className="mb-4 border-t border-brand-border pt-4">
+            {booking.existingReview ? (
+              <>
+                <p className="mb-2 text-xs font-semibold text-brand-primary">{t('review.yourRating')}</p>
+                <StarRating value={booking.existingReview.rating} size={22} readOnly />
+                {booking.existingReview.comment && (
+                  <p className="mt-2.5 text-xs italic text-brand-textSecondary">
+                    "{booking.existingReview.comment}"
+                  </p>
+                )}
+              </>
+            ) : (
+              <form onSubmit={handleReviewSubmit}>
+                <p className="mb-2 text-xs font-semibold text-brand-primary">{t('review.rateWorker')}</p>
+                <div className="mb-3">
+                  <StarRating value={rating} onChange={setRating} />
+                </div>
+                <textarea
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  placeholder={t('review.commentPlaceholder')}
+                  maxLength={2000}
+                  rows={2}
+                  className="mb-3 w-full rounded-field border border-brand-border bg-brand-surface px-3 py-2 text-sm text-slate-900 outline-none ring-brand-accent placeholder:text-brand-textMuted focus:ring-2"
+                />
+                {reviewMutation.isError && (
+                  <p className="mb-3 text-xs text-red-600">{t('review.error')}</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={rating < 1 || reviewMutation.isPending}
+                  className="w-full rounded-control bg-brand-primary py-2.5 text-sm font-medium text-white disabled:opacity-50"
+                >
+                  {reviewMutation.isPending ? t('review.submitting') : t('review.submit')}
+                </button>
+              </form>
+            )}
+          </div>
+        )}
 
         <p className="text-xs text-brand-textMuted">{t('bookingStatus.autoRefreshNote')}</p>
       </div>

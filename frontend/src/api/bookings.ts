@@ -1,5 +1,6 @@
 import { apiClient } from './client';
 import type { TaskCategory } from './tasks';
+import type { Review } from './reviews';
 
 export interface BookingDetail {
   id: string;
@@ -13,6 +14,7 @@ export interface BookingDetail {
   taskCity: string | null;
   taskScheduledStart: string;
   taskPriceOffered: number;
+  existingReview: Review | null;
 }
 
 export async function listMyBookings(): Promise<BookingDetail[]> {

@@ -62,6 +62,10 @@ public class WorkerProfile {
     @Builder.Default
     private Integer completedTasksCount = 0;
 
+    @Column(name = "review_count", nullable = false)
+    @Builder.Default
+    private Integer reviewCount = 0;
+
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private OffsetDateTime createdAt;

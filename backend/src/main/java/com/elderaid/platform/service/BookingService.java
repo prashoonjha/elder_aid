@@ -9,9 +9,11 @@ import com.elderaid.platform.domain.task.TaskStatus;
 import com.elderaid.platform.exception.ForbiddenOperationException;
 import com.elderaid.platform.exception.ResourceNotFoundException;
 import com.elderaid.platform.repository.BookingRepository;
+import com.elderaid.platform.repository.ReviewRepository;
 import com.elderaid.platform.repository.TaskApplicationRepository;
 import com.elderaid.platform.repository.WorkerProfileRepository;
 import com.elderaid.platform.web.dto.BookingResponse;
+import com.elderaid.platform.web.dto.ReviewResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,17 +28,20 @@ public class BookingService {
     private final TaskApplicationRepository taskApplicationRepository;
     private final BookingRepository bookingRepository;
     private final WorkerProfileRepository workerProfileRepository;
+    private final ReviewRepository reviewRepository;
 
     public BookingService(
             TaskApplicationService taskApplicationService,
             TaskApplicationRepository taskApplicationRepository,
             BookingRepository bookingRepository,
-            WorkerProfileRepository workerProfileRepository
+            WorkerProfileRepository workerProfileRepository,
+            ReviewRepository reviewRepository
     ) {
         this.taskApplicationService = taskApplicationService;
         this.taskApplicationRepository = taskApplicationRepository;
         this.bookingRepository = bookingRepository;
         this.workerProfileRepository = workerProfileRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     @Transactional
@@ -155,6 +160,16 @@ public class BookingService {
 
     private BookingResponse toResponse(Booking booking) {
         var task = booking.getTaskRequest();
+        ReviewResponse existingReview = reviewRepository.findByBookingId(booking.getId())
+                .map(review -> new ReviewResponse(
+                        review.getId(),
+                        review.getBooking().getId(),
+                        review.getRatedUser().getId(),
+                        review.getRating(),
+                        review.getComment(),
+                        review.getCreatedAt()))
+                .orElse(null);
+
         return new BookingResponse(
                 booking.getId(),
                 task.getId(),
@@ -166,7 +181,8 @@ public class BookingService {
                 task.getCategory(),
                 task.getCity(),
                 task.getScheduledStart(),
-                task.getPriceOffered()
+                task.getPriceOffered(),
+                existingReview
         );
     }
 }
