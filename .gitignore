@@ -1,17 +1,26 @@
 # Java / Maven
 target/
 *.class
-*.jar
 *.war
-HELP.md
 
-# Node / frontend (added once the frontend exists)
+# Maven wrapper jar SHOULD be committed (it's how the wrapper bootstraps on a
+# fresh checkout), so ignore other jars but keep it.
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# Node / frontend
 node_modules/
 dist/
 build/
 .vite/
+*.tsbuildinfo
 
-# Environment files - never commit secrets
+# Test / coverage output
+coverage/
+/backend/target/surefire-reports/
+
+# Environment files - never commit secrets.
+# .env.example is intentionally NOT ignored: it's a committed template.
 .env
 .env.local
 .env.*.local
@@ -34,3 +43,6 @@ Thumbs.db
 # Locally stored uploaded files (verification documents, etc.)
 /backend/uploads/
 /uploads/
+
+# Misc Spring Boot helper file
+HELP.md
