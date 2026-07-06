@@ -106,8 +106,16 @@ export function TaskApplicationsReviewPage() {
                         {application.workerFirstName} {application.workerLastName}
                       </span>
                       <span className="flex items-center gap-0.5 text-xs text-brand-textSecondary">
-                        <Star size={11} className="fill-amber-400 text-amber-400" />
-                        {application.workerAverageRating.toFixed(1)}
+                        {application.workerReviewCount > 0 ? (
+                          <>
+                            <Star size={11} className="fill-amber-400 text-amber-400" />
+                            {application.workerAverageRating.toFixed(1)}
+                            <span className="text-brand-textMuted"> ({application.workerReviewCount})</span>
+                          </>
+                        ) : (
+                          // 0.0 would read as a bad score rather than "unrated"
+                          <span className="text-brand-textMuted">{t('taskReview.noRatings')}</span>
+                        )}
                       </span>
                     </div>
                     {application.message && (

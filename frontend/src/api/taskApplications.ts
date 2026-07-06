@@ -11,6 +11,7 @@ export interface TaskApplication {
   workerFirstName: string;
   workerLastName: string;
   workerAverageRating: number;
+  workerReviewCount: number;
   status: string;
   message: string | null;
   appliedAt: string;

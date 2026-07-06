@@ -177,7 +177,8 @@
       "ACCEPTED": "Hyvaksytty",
       "REJECTED": "Hylatty",
       "WITHDRAWN": "Peruutettu"
-    }
+    },
+    "noRatings": "Ei arvioita viela"
   },
   "myBookings": {
     "title": "Omat varaukset",

@@ -177,7 +177,8 @@
       "ACCEPTED": "Accepted",
       "REJECTED": "Rejected",
       "WITHDRAWN": "Withdrawn"
-    }
+    },
+    "noRatings": "No ratings yet"
   },
   "myBookings": {
     "title": "My bookings",
