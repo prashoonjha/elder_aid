@@ -140,6 +140,7 @@ public class TaskApplicationService {
                 worker.getUser().getFirstName(),
                 worker.getUser().getLastName(),
                 worker.getAverageRating(),
+                worker.getReviewCount(),
                 application.getStatus(),
                 application.getMessage(),
                 application.getAppliedAt()

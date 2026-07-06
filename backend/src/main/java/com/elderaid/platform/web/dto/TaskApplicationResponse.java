@@ -13,6 +13,7 @@ public record TaskApplicationResponse(
         String workerFirstName,
         String workerLastName,
         BigDecimal workerAverageRating,
+        Integer workerReviewCount,
         ApplicationStatus status,
         String message,
         OffsetDateTime appliedAt
