@@ -169,7 +169,6 @@
     }
   },
   "taskReview": {
-    "applicationCount": "{{count}} hakemusta",
     "noApplications": "Ei hakemuksia vielä.",
     "reject": "Hylkaa",
     "accept": "Hyvaksy",
@@ -178,7 +177,9 @@
       "REJECTED": "Hylatty",
       "WITHDRAWN": "Peruutettu"
     },
-    "noRatings": "Ei arvioita viela"
+    "noRatings": "Ei arvioita viela",
+    "applicationCount_one": "{{count}} hakemus",
+    "applicationCount_other": "{{count}} hakemusta"
   },
   "myBookings": {
     "title": "Omat varaukset",

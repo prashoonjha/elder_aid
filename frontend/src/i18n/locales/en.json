@@ -169,7 +169,6 @@
     }
   },
   "taskReview": {
-    "applicationCount": "{{count}} applications",
     "noApplications": "No applications yet.",
     "reject": "Reject",
     "accept": "Accept",
@@ -178,7 +177,9 @@
       "REJECTED": "Rejected",
       "WITHDRAWN": "Withdrawn"
     },
-    "noRatings": "No ratings yet"
+    "noRatings": "No ratings yet",
+    "applicationCount_one": "{{count}} application",
+    "applicationCount_other": "{{count}} applications"
   },
   "myBookings": {
     "title": "My bookings",
