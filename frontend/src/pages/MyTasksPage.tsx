@@ -28,7 +28,15 @@ export function MyTasksPage() {
         {tasksQuery.isLoading && <p className="text-sm text-brand-textSecondary">{t('common.loading')}</p>}
 
         {tasksQuery.data && tasksQuery.data.length === 0 && (
-          <p className="mt-8 text-center text-sm text-brand-textSecondary">{t('myTasks.empty')}</p>
+          <div className="mt-8 flex flex-col items-center gap-3">
+            <p className="text-center text-sm text-brand-textSecondary">{t('myTasks.empty')}</p>
+            <button
+              onClick={() => navigate('/tasks/new')}
+              className="rounded-control bg-brand-primary px-5 py-2.5 text-sm font-medium text-white"
+            >
+              {t('myTasks.postTask')}
+            </button>
+          </div>
         )}
 
         <div className="flex flex-col gap-2.5">

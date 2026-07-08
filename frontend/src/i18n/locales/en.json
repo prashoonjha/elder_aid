@@ -166,7 +166,8 @@
       "MATCHED": "Matched",
       "COMPLETED": "Completed",
       "CANCELLED": "Cancelled"
-    }
+    },
+    "postTask": "Post a task"
   },
   "taskReview": {
     "noApplications": "No applications yet.",
@@ -192,7 +193,8 @@
       "COMPLETED": "Completed",
       "CANCELLED": "Cancelled",
       "DISPUTED": "Disputed"
-    }
+    },
+    "browseTasks": "Browse tasks"
   },
   "privacy": {
     "title": "Privacy",
