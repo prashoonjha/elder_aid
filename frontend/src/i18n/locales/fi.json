@@ -166,7 +166,8 @@
       "MATCHED": "Sovittu",
       "COMPLETED": "Valmis",
       "CANCELLED": "Peruttu"
-    }
+    },
+    "postTask": "Julkaise tehtava"
   },
   "taskReview": {
     "noApplications": "Ei hakemuksia vielä.",
@@ -192,7 +193,8 @@
       "COMPLETED": "Valmis",
       "CANCELLED": "Peruttu",
       "DISPUTED": "Riitautettu"
-    }
+    },
+    "browseTasks": "Selaa tehtavia"
   },
   "privacy": {
     "title": "Tietosuoja",
