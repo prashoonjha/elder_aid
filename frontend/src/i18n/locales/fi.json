@@ -3,7 +3,9 @@
     "appName": "ElderAid",
     "tagline": "Apua ja seuraa arjen tueksi",
     "back": "Takaisin",
-    "loading": "Ladataan..."
+    "loading": "Ladataan...",
+    "showPassword": "Nayta salasana",
+    "hidePassword": "Piilota salasana"
   },
   "welcome": {
     "title": "Tervetuloa",
