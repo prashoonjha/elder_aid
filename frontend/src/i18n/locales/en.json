@@ -3,7 +3,9 @@
     "appName": "ElderAid",
     "tagline": "Help and company for everyday life",
     "back": "Back",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
   },
   "welcome": {
     "title": "Welcome",
