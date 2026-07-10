@@ -26,6 +26,7 @@ export function RegisterPage() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,6 +41,12 @@ export function RegisterPage() {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     setErrorMessage(null);
+
+    if (password !== confirmPassword) {
+      setErrorMessage(t('register.errors.passwordMismatch'));
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -119,6 +126,17 @@ export function RegisterPage() {
             <p className={`-mt-2 mb-3 text-xs ${password.length >= 10 ? 'text-brand-accent' : 'text-brand-textMuted'}`}>
               {password.length >= 10 ? t('register.passwordStrength.good') : t('register.passwordStrength.tooShort')}
             </p>
+          )}
+
+          <TextField
+            label={t('register.confirmPassword')}
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          {confirmPassword.length > 0 && confirmPassword !== password && (
+            <p className="-mt-2 mb-3 text-xs text-red-600">{t('register.errors.passwordMismatch')}</p>
           )}
 
           <CheckboxField
