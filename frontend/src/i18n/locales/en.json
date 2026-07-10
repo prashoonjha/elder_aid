@@ -45,12 +45,14 @@
     "errors": {
       "emailInUse": "An account with this email already exists",
       "validation": "Please check your details and try again",
-      "generic": "Something went wrong. Please try again."
+      "generic": "Something went wrong. Please try again.",
+      "passwordMismatch": "Passwords don't match"
     },
     "passwordStrength": {
       "tooShort": "At least 10 characters",
       "good": "Password length looks good"
-    }
+    },
+    "confirmPassword": "Confirm password"
   },
   "login": {
     "email": "Email",

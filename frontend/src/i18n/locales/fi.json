@@ -45,12 +45,14 @@
     "errors": {
       "emailInUse": "Tama sahkopostiosoite on jo kaytossa",
       "validation": "Tarkista tiedot ja yrita uudelleen",
-      "generic": "Jotain menu pieleen. Yrita uudelleen."
+      "generic": "Jotain menu pieleen. Yrita uudelleen.",
+      "passwordMismatch": "Salasanat eivat tasmaa"
     },
     "passwordStrength": {
       "tooShort": "Vahintaan 10 merkkia",
       "good": "Salasana on riittavan pitka"
-    }
+    },
+    "confirmPassword": "Vahvista salasana"
   },
   "login": {
     "email": "Sahkoposti",
