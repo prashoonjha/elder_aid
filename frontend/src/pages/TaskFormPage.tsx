@@ -8,7 +8,7 @@ import { Button } from '../components/ui/Button';
 import { listMyElderlyProfiles } from '../api/elderlyProfiles';
 import { createTask, type TaskCategory } from '../api/tasks';
 import { TASK_CATEGORIES } from '../constants/taskCategories';
-import { calculateClientBreakdown } from '../lib/pricing';
+import { calculateClientBreakdown, calculateWorkerPayout } from '../lib/pricing';
 
 export function TaskFormPage() {
   const { t } = useTranslation();
@@ -52,6 +52,7 @@ export function TaskFormPage() {
   });
 
   const { price, serviceFee, total } = calculateClientBreakdown(parseFloat(priceOffered));
+  const workerPayout = calculateWorkerPayout(price);
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -208,6 +209,11 @@ export function TaskFormPage() {
                 <span>{t('newTask.breakdown.total')}</span>
                 <span>{total.toFixed(2)} €</span>
               </div>
+              {/* Not part of what the client pays - shown so they can see the
+                  split rather than wondering where the commission goes. */}
+              <p className="mt-2 border-t border-brand-border pt-2 text-xs text-brand-textMuted">
+                {t('newTask.breakdown.workerReceives', { amount: workerPayout.toFixed(2) })}
+              </p>
             </div>
           )}
 
