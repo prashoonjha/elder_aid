@@ -117,7 +117,8 @@
     "breakdown": {
       "task": "Task",
       "serviceFee": "Service fee (8%)",
-      "total": "You'll be charged"
+      "total": "You'll be charged",
+      "workerReceives": "The worker receives {{amount}} € after commission."
     },
     "cancel": "Cancel",
     "submit": "Post task",

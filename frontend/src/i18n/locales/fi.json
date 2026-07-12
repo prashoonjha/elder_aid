@@ -117,7 +117,8 @@
     "breakdown": {
       "task": "Tehtava",
       "serviceFee": "Palvelumaksu (8%)",
-      "total": "Veloitetaan sinulta"
+      "total": "Veloitetaan sinulta",
+      "workerReceives": "Tyontekija saa {{amount}} € komission jalkeen."
     },
     "cancel": "Peruuta",
     "submit": "Julkaise tehtava",
