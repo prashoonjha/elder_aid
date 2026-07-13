@@ -64,7 +64,7 @@ export function TaskApplicationsReviewPage() {
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-brand-surface px-6 py-10">
-      <div className="w-full max-w-lg rounded-card border border-brand-border bg-white p-9">
+      <div className="w-full max-w-3xl rounded-card border border-brand-border bg-white p-9">
         <button onClick={() => navigate('/tasks/mine')} aria-label={t('common.back')} className="mb-4 text-brand-textMuted">
           <ArrowLeft size={20} />
         </button>
@@ -88,7 +88,7 @@ export function TaskApplicationsReviewPage() {
           <p className="text-sm text-brand-textSecondary">{t('taskReview.noApplications')}</p>
         )}
 
-        <div className="flex flex-col gap-2.5">
+        <div className="grid grid-cols-1 gap-2.5 md:grid-cols-2">
           {applicationsQuery.data?.map((application) => {
             const isPending = application.status === 'PENDING';
             const isActioningThis = actioningId === application.id;

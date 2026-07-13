@@ -50,7 +50,7 @@ export function MyBookingsPage() {
 
   return (
     <main className="min-h-screen bg-brand-surface px-4 py-6">
-      <div className="mx-auto max-w-md">
+      <div className="mx-auto max-w-5xl">
         <h1 className="font-display mb-4 text-lg font-bold text-brand-primary">{t('myBookings.title')}</h1>
 
         {bookingsQuery.isLoading && <p className="text-sm text-brand-textSecondary">{t('common.loading')}</p>}
@@ -67,7 +67,7 @@ export function MyBookingsPage() {
           </div>
         )}
 
-        <div className="flex flex-col gap-2.5">
+        <div className="grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-3">
           {bookingsQuery.data?.map((booking) => {
             const categoryConfig = TASK_CATEGORIES.find((c) => c.value === booking.taskCategory);
             const Icon = categoryConfig?.icon;
