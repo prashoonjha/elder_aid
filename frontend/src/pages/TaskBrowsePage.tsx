@@ -33,7 +33,7 @@ export function TaskBrowsePage() {
 
   return (
     <main className="min-h-screen bg-brand-surface px-4 py-6">
-      <div className="mx-auto max-w-md">
+      <div className="mx-auto max-w-5xl">
         <h1 className="font-display mb-4 text-lg font-bold text-brand-primary">{t('taskBrowse.title')}</h1>
 
         <div className="mb-4 flex gap-2 overflow-x-auto pb-1">
@@ -66,7 +66,7 @@ export function TaskBrowsePage() {
           <p className="mt-8 text-center text-sm text-brand-textSecondary">{t('taskBrowse.empty')}</p>
         )}
 
-        <div className="flex flex-col gap-2.5">
+        <div className="grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-3">
           {allTasks.map((task) => {
             const categoryConfig = TASK_CATEGORIES.find((c) => c.value === task.category);
             const Icon = categoryConfig?.icon;
@@ -98,7 +98,7 @@ export function TaskBrowsePage() {
           <button
             onClick={() => setPage((p) => p + 1)}
             disabled={tasksQuery.isLoading}
-            className="mt-4 w-full rounded-control border border-brand-border bg-white py-2.5 text-sm font-medium text-brand-primary disabled:opacity-50"
+            className="mx-auto mt-4 block w-full max-w-xs rounded-control border border-brand-border bg-white py-2.5 text-sm font-medium text-brand-primary disabled:opacity-50"
           >
             {tasksQuery.isLoading ? t('common.loading') : t('taskBrowse.loadMore')}
           </button>
