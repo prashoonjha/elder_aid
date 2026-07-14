@@ -4,7 +4,7 @@
     "tagline": "Apua ja seuraa arjen tueksi",
     "back": "Takaisin",
     "loading": "Ladataan...",
-    "showPassword": "Nayta salasana",
+    "showPassword": "Näytä salasana",
     "hidePassword": "Piilota salasana"
   },
   "welcome": {
@@ -19,7 +19,7 @@
       "subtitle": "Tienaa apua tarjoamalla"
     },
     "haveAccount": "Onko sinulla jo tili?",
-    "logIn": "Kirjaudu sisaan"
+    "logIn": "Kirjaudu sisään"
   },
   "forWhom": {
     "title": "Kenelle?",
@@ -45,37 +45,56 @@
     "errors": {
       "emailInUse": "Tama sahkopostiosoite on jo kaytossa",
       "validation": "Tarkista tiedot ja yrita uudelleen",
-      "generic": "Jotain menu pieleen. Yrita uudelleen.",
-      "passwordMismatch": "Salasanat eivat tasmaa"
+      "generic": "Jotain meni pieleen. Yritä uudelleen.",
+      "passwordMismatch": "Salasanat eivät täsmää"
     },
     "passwordStrength": {
-      "tooShort": "Vahintaan 10 merkkia",
-      "good": "Salasana on riittavan pitka"
+      "tooShort": "Vähintään 10 merkkiä",
+      "good": "Salasana on riittävän pitkä"
     },
     "confirmPassword": "Vahvista salasana"
   },
   "login": {
     "email": "Sahkoposti",
     "password": "Salasana",
-    "submit": "Kirjaudu sisaan",
+    "submit": "Kirjaudu sisään",
     "submitting": "Kirjaudutaan...",
     "noAccount": "Eiko tilia?",
     "createOne": "Luo tili",
     "errors": {
       "invalidCredentials": "Vaara sahkoposti tai salasana",
-      "generic": "Jotain menu pieleen. Yrita uudelleen."
+      "generic": "Jotain meni pieleen. Yritä uudelleen."
     }
   },
   "dashboard": {
-    "welcomeBack": "Tervetuloa takaisin",
-    "placeholderNote": "Tama on tilapainen nakyma. Oikeat toiminnot rakennetaan seuraavaksi.",
     "logOut": "Kirjaudu ulos",
-    "addProfile": "+ Lisaa profiili",
-    "postTask": "+ Julkaise tehtava",
-    "browseTasks": "Selaa tehtavia",
-    "myTasks": "Omat tehtavat",
-    "myBookings": "Omat varaukset",
-    "privacy": "Tietosuoja"
+    "privacy": "Tietosuoja",
+    "welcomeBackNamed": "Tervetuloa takaisin, {{name}}",
+    "roleWorker": "Auttaja",
+    "roleFamily": "Perheenjäsen",
+    "verified": "Vahvistettu",
+    "cards": {
+      "postTask": {
+        "title": "Julkaise tehtävä",
+        "description": "Pyydä apua asiointiin tai seuranpitoon"
+      },
+      "addProfile": {
+        "title": "Lisää profiili",
+        "description": "Täytä hoidettavan henkilön tiedot"
+      },
+      "myTasks": {
+        "title": "Omat tehtävät",
+        "description": "Seuraa hakemuksia ja varauksia"
+      },
+      "browseTasks": {
+        "title": "Selaa tehtäviä",
+        "description": "Löydä työtä läheltäsi ja hae"
+      },
+      "myBookings": {
+        "title": "Omat varaukset",
+        "description": "Kirjaudu sisään ja ulos vahvistetuista töistä"
+      }
+    }
   },
   "elderlyProfile": {
     "title": "Luo profiili",
@@ -94,11 +113,11 @@
     "submitting": "Tallennetaan...",
     "errors": {
       "validation": "Tarkista tiedot ja yrita uudelleen",
-      "generic": "Jotain menu pieleen. Yrita uudelleen."
+      "generic": "Jotain meni pieleen. Yritä uudelleen."
     }
   },
   "newTask": {
-    "title": "Luo uusi tehtava",
+    "title": "Luo uusi tehtävä",
     "forWhom": "Kenelle",
     "category": "Tehtavatyyppi",
     "categories": {
@@ -113,33 +132,33 @@
     "durationHours": "Kesto (h)",
     "address": "Osoite",
     "city": "Kaupunki",
-    "price": "Tarjoamasi hinta tyontekijalle",
+    "price": "Tarjoamasi hinta työntekijälle",
     "breakdown": {
       "task": "Tehtava",
       "serviceFee": "Palvelumaksu (8%)",
       "total": "Veloitetaan sinulta",
-      "workerReceives": "Tyontekija saa {{amount}} € komission jalkeen."
+      "workerReceives": "Työntekijä saa {{amount}} € komission jälkeen."
     },
     "cancel": "Peruuta",
-    "submit": "Julkaise tehtava",
+    "submit": "Julkaise tehtävä",
     "submitting": "Julkaistaan...",
     "emptyState": {
       "title": "Ei profiileja vielä",
-      "description": "Luo ensin profiili henkilolle, jolle haluat tehtavan.",
+      "description": "Luo ensin profiili henkilölle, jolle haluat tehtävän.",
       "cta": "Luo profiili"
     },
     "errors": {
-      "forbidden": "Sinulla ei ole oikeutta luoda tehtavaa talle profiilille",
+      "forbidden": "Sinulla ei ole oikeutta luoda tehtävää tälle profiilille",
       "validation": "Tarkista tiedot ja yrita uudelleen",
-      "generic": "Jotain menu pieleen. Yrita uudelleen."
+      "generic": "Jotain meni pieleen. Yritä uudelleen."
     }
   },
   "taskBrowse": {
-    "title": "Avoimet tehtavat",
+    "title": "Avoimet tehtävät",
     "allCategories": "Kaikki",
-    "empty": "Ei avoimia tehtavia juuri nyt.",
+    "empty": "Ei avoimia tehtäviä juuri nyt.",
     "statusOpen": "Avoin",
-    "loadMore": "Lataa lisaa"
+    "loadMore": "Lataa lisää"
   },
   "taskDetail": {
     "when": "Milloin",
@@ -147,32 +166,32 @@
     "breakdown": {
       "taskPrice": "Tehtavan hinta",
       "commission": "Valityspalkkio (12%)",
-      "youEarn": "Sina saat"
+      "youEarn": "Sinä saat"
     },
-    "apply": "Haku tehtavaan",
+    "apply": "Hae tehtävää",
     "applying": "Lahetetaan...",
     "applied": {
       "title": "Hakemus lahetetty",
       "description": "Saat ilmoituksen, kun perhe vastaa hakemukseesi.",
-      "browseMore": "Selaa lisaa tehtavia"
+      "browseMore": "Selaa lisää tehtäviä"
     },
     "errors": {
-      "notVerified": "Tilisi tarvitsee tunnistautumisen hyvaksynnan ennen kuin voit hakea tehtaviin.",
-      "taskClosed": "Tama tehtava ei ota enaa vastaan hakemuksia.",
-      "alreadyApplied": "Olet jo hakenut tahan tehtavaan.",
-      "generic": "Jotain menu pieleen. Yrita uudelleen."
+      "notVerified": "Tilisi tarvitsee tunnistautumisen hyväksynnän ennen kuin voit hakea tehtäviin.",
+      "taskClosed": "Tämä tehtävä ei ota enää vastaan hakemuksia.",
+      "alreadyApplied": "Olet jo hakenut tähän tehtävään.",
+      "generic": "Jotain meni pieleen. Yritä uudelleen."
     }
   },
   "myTasks": {
-    "title": "Omat tehtavat",
-    "empty": "Et ole vielä julkaissut tehtavia.",
+    "title": "Omat tehtävät",
+    "empty": "Et ole vielä julkaissut tehtäviä.",
     "status": {
       "OPEN": "Avoin",
       "MATCHED": "Sovittu",
       "COMPLETED": "Valmis",
       "CANCELLED": "Peruttu"
     },
-    "postTask": "Julkaise tehtava"
+    "postTask": "Julkaise tehtävä"
   },
   "taskReview": {
     "noApplications": "Ei hakemuksia vielä.",
@@ -183,15 +202,15 @@
       "REJECTED": "Hylatty",
       "WITHDRAWN": "Peruutettu"
     },
-    "noRatings": "Ei arvioita viela",
+    "noRatings": "Ei arvioita vielä",
     "applicationCount_one": "{{count}} hakemus",
     "applicationCount_other": "{{count}} hakemusta"
   },
   "myBookings": {
     "title": "Omat varaukset",
     "empty": "Ei varauksia vielä.",
-    "checkIn": "Merkitse saavuit",
-    "checkOut": "Merkitse valmis",
+    "checkIn": "Merkitse saapuneeksi",
+    "checkOut": "Merkitse valmiiksi",
     "status": {
       "CONFIRMED": "Vahvistettu",
       "CHECKED_IN": "Paikalla",
@@ -199,33 +218,33 @@
       "CANCELLED": "Peruttu",
       "DISPUTED": "Riitautettu"
     },
-    "browseTasks": "Selaa tehtavia"
+    "browseTasks": "Selaa tehtäviä"
   },
   "privacy": {
     "title": "Tietosuoja",
     "export": {
       "heading": "Omat tiedot",
-      "description": "Lataa kopio kaikista tiedoista, joita meilla on sinusta tallennettuna.",
+      "description": "Lataa kopio kaikista tiedoista, joita meillä on sinusta tallennettuna.",
       "cta": "Lataa tietoni (JSON)",
       "downloading": "Ladataan..."
     },
     "delete": {
       "heading": "Poista tili",
-      "description": "Tilisi poistetaan pysyvasti. Tata ei voi perua.",
+      "description": "Tilisi poistetaan pysyvästi. Tätä ei voi perua.",
       "passwordLabel": "Vahvista salasanalla",
       "cta": "Poista tilini pysyvasti",
       "submitting": "Poistetaan..."
     },
     "errors": {
-      "wrongPassword": "Vaara salasana",
-      "generic": "Jotain menu pieleen. Yrita uudelleen."
+      "wrongPassword": "Väärä salasana",
+      "generic": "Jotain meni pieleen. Yritä uudelleen."
     }
   },
   "bookingStatus": {
     "title": "Varauksen tiedot",
     "checkedInAt": "Saapui klo",
     "completedAt": "Valmistui klo",
-    "autoRefreshNote": "Sivu paivittyy automaattisesti 30 sekunnin valein.",
+    "autoRefreshNote": "Sivu päivittyy automaattisesti 30 sekunnin välein.",
     "status": {
       "CONFIRMED": "Vahvistettu",
       "CHECKED_IN": "Paikalla",
@@ -233,11 +252,11 @@
     }
   },
   "review": {
-    "rateWorker": "Arvioi tyontekija",
+    "rateWorker": "Arvioi työntekijä",
     "yourRating": "Sinun arviosi",
-    "commentPlaceholder": "Lisaa kommentti (valinnainen)",
-    "submit": "Laheta arvio",
-    "submitting": "Lahetetaan...",
-    "error": "Arvion lahetys epaonnistui. Yrita uudelleen."
+    "commentPlaceholder": "Lisää kommentti (valinnainen)",
+    "submit": "Lähetä arvio",
+    "submitting": "Lähetetään...",
+    "error": "Arvion lähetys epäonnistui. Yritä uudelleen."
   }
 }
