@@ -67,15 +67,34 @@
     }
   },
   "dashboard": {
-    "welcomeBack": "Welcome back",
-    "placeholderNote": "This is a placeholder screen. Real features are built next.",
     "logOut": "Log out",
-    "addProfile": "+ Add a profile",
-    "postTask": "+ Post a task",
-    "browseTasks": "Browse tasks",
-    "myTasks": "My tasks",
-    "myBookings": "My bookings",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "welcomeBackNamed": "Welcome back, {{name}}",
+    "roleWorker": "Helper",
+    "roleFamily": "Family member",
+    "verified": "Verified",
+    "cards": {
+      "postTask": {
+        "title": "Post a task",
+        "description": "Request help with errands or companionship"
+      },
+      "addProfile": {
+        "title": "Add a profile",
+        "description": "Set up details for the person receiving care"
+      },
+      "myTasks": {
+        "title": "My tasks",
+        "description": "Track applications and bookings"
+      },
+      "browseTasks": {
+        "title": "Browse tasks",
+        "description": "Find work near you and apply"
+      },
+      "myBookings": {
+        "title": "My bookings",
+        "description": "Check in and out of confirmed work"
+      }
+    }
   },
   "elderlyProfile": {
     "title": "Create a profile",
