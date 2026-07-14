@@ -1,5 +1,9 @@
 package com.elderaid.platform.web.auth;
 
+import com.elderaid.platform.domain.user.AppUser;
+import com.elderaid.platform.domain.worker.VerificationTier;
+import com.elderaid.platform.repository.UserRepository;
+import com.elderaid.platform.repository.WorkerProfileRepository;
 import com.elderaid.platform.security.CurrentUser;
 import com.elderaid.platform.service.DataPrivacyService;
 import com.elderaid.platform.web.dto.CurrentUserResponse;
@@ -19,14 +23,35 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final DataPrivacyService dataPrivacyService;
+    private final UserRepository userRepository;
+    private final WorkerProfileRepository workerProfileRepository;
 
-    public UserController(DataPrivacyService dataPrivacyService) {
+    public UserController(
+            DataPrivacyService dataPrivacyService,
+            UserRepository userRepository,
+            WorkerProfileRepository workerProfileRepository
+    ) {
         this.dataPrivacyService = dataPrivacyService;
+        this.userRepository = userRepository;
+        this.workerProfileRepository = workerProfileRepository;
     }
 
     @GetMapping("/me")
     public CurrentUserResponse me(@AuthenticationPrincipal CurrentUser currentUser) {
-        return new CurrentUserResponse(currentUser.id(), currentUser.email(), currentUser.roles());
+        AppUser user = userRepository.findById(currentUser.id()).orElseThrow();
+
+        // Only workers have a profile, so this stays null for everyone else.
+        VerificationTier tier = workerProfileRepository.findByUserId(currentUser.id())
+                .map(profile -> profile.getVerificationTier())
+                .orElse(null);
+
+        return new CurrentUserResponse(
+                user.getId(),
+                user.getEmail(),
+                user.getFirstName(),
+                currentUser.roles(),
+                tier
+        );
     }
 
     // GDPR Article 15/20 - everything we hold tied to this account, in one
