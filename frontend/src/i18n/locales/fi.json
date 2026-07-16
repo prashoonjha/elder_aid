@@ -189,7 +189,8 @@
       "OPEN": "Avoin",
       "MATCHED": "Sovittu",
       "COMPLETED": "Valmis",
-      "CANCELLED": "Peruttu"
+      "CANCELLED": "Peruttu",
+      "EXPIRED": "Vanhentunut"
     },
     "postTask": "Julkaise tehtävä"
   },

@@ -9,6 +9,7 @@ const STATUS_STYLES: Record<string, string> = {
   MATCHED: 'bg-brand-primary text-white',
   COMPLETED: 'bg-brand-accentLight text-brand-accentDark',
   CANCELLED: 'bg-brand-surface text-brand-textMuted',
+  EXPIRED: 'bg-amber-50 text-amber-700',
 };
 
 export function MyTasksPage() {
@@ -43,6 +44,12 @@ export function MyTasksPage() {
           {tasksQuery.data?.map((task) => {
             const categoryConfig = TASK_CATEGORIES.find((c) => c.value === task.category);
             const Icon = categoryConfig?.icon;
+            // An OPEN task whose start time has passed can no longer be seen
+            // or taken by any worker, so surface it as expired rather than
+            // letting the family think it's still live. Display-only - the
+            // real status stays OPEN.
+            const isExpired = task.status === 'OPEN' && new Date(task.scheduledStart) < new Date();
+            const displayStatus = isExpired ? 'EXPIRED' : task.status;
             return (
               <button
                 key={task.id}
@@ -62,8 +69,8 @@ export function MyTasksPage() {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-bold text-brand-primary">{task.priceOffered.toFixed(2)} €</span>
-                  <span className={`rounded-full px-2.5 py-1 text-[10px] font-medium ${STATUS_STYLES[task.status] ?? ''}`}>
-                    {t(`myTasks.status.${task.status}`)}
+                  <span className={`rounded-full px-2.5 py-1 text-[10px] font-medium ${STATUS_STYLES[displayStatus] ?? ''}`}>
+                    {t(`myTasks.status.${displayStatus}`)}
                   </span>
                 </div>
               </button>
