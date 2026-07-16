@@ -189,7 +189,8 @@
       "OPEN": "Open",
       "MATCHED": "Matched",
       "COMPLETED": "Completed",
-      "CANCELLED": "Cancelled"
+      "CANCELLED": "Cancelled",
+      "EXPIRED": "Expired"
     },
     "postTask": "Post a task"
   },
