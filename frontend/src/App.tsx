@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './routes/ProtectedRoute';
@@ -17,6 +19,14 @@ import { PrivacySettingsPage } from './pages/PrivacySettingsPage';
 import { TaskBookingStatusPage } from './pages/TaskBookingStatusPage';
 
 export function App() {
+  const { i18n } = useTranslation();
+
+  // Keep <html lang> matching the active language so screen readers use the
+  // right pronunciation rules - it was hardcoded to fi even in English.
+  useEffect(() => {
+    document.documentElement.lang = i18n.language.startsWith('en') ? 'en' : 'fi';
+  }, [i18n.language]);
+
   return (
     <BrowserRouter>
       <AuthProvider>
