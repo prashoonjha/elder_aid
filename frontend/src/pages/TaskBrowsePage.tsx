@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
@@ -16,13 +16,18 @@ export function TaskBrowsePage() {
   const tasksQuery = useQuery({
     queryKey: ['tasks', 'open', categoryFilter, page],
     queryFn: () => browseOpenTasks(categoryFilter === 'ALL' ? undefined : categoryFilter, page),
-    onSuccess: (data) => {
-      // On a category change (page resets to 0) replace the list entirely;
-      // on a "load more" click (page > 0) append to what's already shown.
-      setAllTasks((prev) => page === 0 ? data.content : [...prev, ...data.content]);
-      setIsLastPage(data.last);
-    },
   });
+
+  // React Query v5 removed the onSuccess callback, so accumulate pages in an
+  // effect instead: page 0 replaces the list (fresh load / filter change),
+  // later pages append (load more).
+  useEffect(() => {
+    if (!tasksQuery.data) return;
+    setAllTasks((prev) =>
+      page === 0 ? tasksQuery.data.content : [...prev, ...tasksQuery.data.content],
+    );
+    setIsLastPage(tasksQuery.data.last);
+  }, [tasksQuery.data, page]);
 
   function handleCategoryChange(value: TaskCategory | 'ALL') {
     setCategoryFilter(value);
