@@ -137,7 +137,7 @@ public class DataPrivacyService {
                 .toList();
 
         return new UserDataExportResponse.WorkerProfileSummary(
-                workerProfile.getVerificationTier(),
+                workerProfile.getVerificationStatus(),
                 workerProfile.getAverageRating(),
                 workerProfile.getCompletedTasksCount(),
                 documents,

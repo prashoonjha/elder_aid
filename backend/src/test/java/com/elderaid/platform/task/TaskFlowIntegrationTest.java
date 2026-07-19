@@ -2,7 +2,7 @@ package com.elderaid.platform.task;
 
 import com.elderaid.platform.domain.task.TaskCategory;
 import com.elderaid.platform.domain.user.UserRole;
-import com.elderaid.platform.domain.worker.VerificationTier;
+import com.elderaid.platform.domain.worker.VerificationStatus;
 import com.elderaid.platform.repository.WorkerProfileRepository;
 import com.elderaid.platform.web.dto.ApplyToTaskRequest;
 import com.elderaid.platform.web.dto.CreateElderlyProfileRequest;
@@ -74,7 +74,7 @@ class TaskFlowIntegrationTest {
         // No admin review flow exists yet (that's the next feature) - bump
         // the tier directly so this test can exercise the apply path now.
         var workerProfile = workerProfileRepository.findByUserId(workerUserId).orElseThrow();
-        workerProfile.setVerificationTier(VerificationTier.TIER1_ID_VERIFIED);
+        workerProfile.setVerificationStatus(VerificationStatus.VERIFIED);
         workerProfileRepository.save(workerProfile);
 
         CreateElderlyProfileRequest elderlyRequest = new CreateElderlyProfileRequest(

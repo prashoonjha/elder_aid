@@ -6,7 +6,7 @@ import com.elderaid.platform.domain.task.TaskCategory;
 import com.elderaid.platform.domain.task.TaskStatus;
 import com.elderaid.platform.domain.worker.DocumentStatus;
 import com.elderaid.platform.domain.worker.DocumentType;
-import com.elderaid.platform.domain.worker.VerificationTier;
+import com.elderaid.platform.domain.worker.VerificationStatus;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -65,7 +65,7 @@ public record UserDataExportResponse(
     }
 
     public record WorkerProfileSummary(
-            VerificationTier verificationTier,
+            VerificationStatus verificationStatus,
             BigDecimal averageRating,
             Integer completedTasksCount,
             List<VerificationDocumentSummary> documents,

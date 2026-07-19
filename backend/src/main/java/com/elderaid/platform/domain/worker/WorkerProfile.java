@@ -47,9 +47,9 @@ public class WorkerProfile {
     private String profilePhotoUrl;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "verification_tier", nullable = false)
+    @Column(name = "verification_status", nullable = false)
     @Builder.Default
-    private VerificationTier verificationTier = VerificationTier.NONE;
+    private VerificationStatus verificationStatus = VerificationStatus.UNVERIFIED;
 
     @Column(name = "stripe_account_id")
     private String stripeAccountId;

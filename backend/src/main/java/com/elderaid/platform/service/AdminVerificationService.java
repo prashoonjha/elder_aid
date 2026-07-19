@@ -4,7 +4,7 @@ import com.elderaid.platform.domain.user.AppUser;
 import com.elderaid.platform.domain.worker.DocumentStatus;
 import com.elderaid.platform.domain.worker.DocumentType;
 import com.elderaid.platform.domain.worker.VerificationDocument;
-import com.elderaid.platform.domain.worker.VerificationTier;
+import com.elderaid.platform.domain.worker.VerificationStatus;
 import com.elderaid.platform.domain.worker.WorkerProfile;
 import com.elderaid.platform.exception.ForbiddenOperationException;
 import com.elderaid.platform.exception.ResourceNotFoundException;
@@ -55,7 +55,7 @@ public class AdminVerificationService {
         document.setRejectionReason(null);
         document = verificationDocumentRepository.save(document);
 
-        recalculateTier(document.getWorkerProfile());
+        recalculateStatus(document.getWorkerProfile());
 
         return toResponse(document);
     }
@@ -88,28 +88,18 @@ public class AdminVerificationService {
     }
 
     /**
-     * Tier 1 requires an approved ID card AND an approved selfie - either
-     * alone isn't enough to confirm identity. Tier 2 additionally requires
-     * an approved criminal record extract. We only ever upgrade here, never
-     * downgrade automatically - if that's ever needed (e.g. a document is
-     * later found fraudulent), that should be a deliberate admin action,
+     * Verified requires an approved ID card AND an approved selfie - either
+     * alone isn't enough to confirm identity. We only ever move a worker up to
+     * VERIFIED here, never automatically back down; revoking verification (e.g.
+     * a document later found fraudulent) should be a deliberate admin action,
      * not a side effect of approving something else.
      */
-    private void recalculateTier(WorkerProfile workerProfile) {
+    private void recalculateStatus(WorkerProfile workerProfile) {
         boolean idApproved = hasApproved(workerProfile.getId(), DocumentType.ID_CARD);
         boolean selfieApproved = hasApproved(workerProfile.getId(), DocumentType.SELFIE);
-        boolean criminalRecordApproved = hasApproved(workerProfile.getId(), DocumentType.CRIMINAL_RECORD_EXTRACT);
 
-        VerificationTier newTier = workerProfile.getVerificationTier();
-
-        if (idApproved && selfieApproved && criminalRecordApproved) {
-            newTier = VerificationTier.TIER2_BACKGROUND_CHECKED;
-        } else if (idApproved && selfieApproved && newTier == VerificationTier.NONE) {
-            newTier = VerificationTier.TIER1_ID_VERIFIED;
-        }
-
-        if (newTier != workerProfile.getVerificationTier()) {
-            workerProfile.setVerificationTier(newTier);
+        if (idApproved && selfieApproved && workerProfile.getVerificationStatus() != VerificationStatus.VERIFIED) {
+            workerProfile.setVerificationStatus(VerificationStatus.VERIFIED);
             workerProfileRepository.save(workerProfile);
         }
     }

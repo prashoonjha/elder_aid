@@ -1,7 +1,7 @@
 package com.elderaid.platform.web.auth;
 
 import com.elderaid.platform.domain.user.AppUser;
-import com.elderaid.platform.domain.worker.VerificationTier;
+import com.elderaid.platform.domain.worker.VerificationStatus;
 import com.elderaid.platform.repository.UserRepository;
 import com.elderaid.platform.repository.WorkerProfileRepository;
 import com.elderaid.platform.security.CurrentUser;
@@ -41,8 +41,8 @@ public class UserController {
         AppUser user = userRepository.findById(currentUser.id()).orElseThrow();
 
         // Only workers have a profile, so this stays null for everyone else.
-        VerificationTier tier = workerProfileRepository.findByUserId(currentUser.id())
-                .map(profile -> profile.getVerificationTier())
+        VerificationStatus status = workerProfileRepository.findByUserId(currentUser.id())
+                .map(profile -> profile.getVerificationStatus())
                 .orElse(null);
 
         return new CurrentUserResponse(
@@ -50,7 +50,7 @@ public class UserController {
                 user.getEmail(),
                 user.getFirstName(),
                 currentUser.roles(),
-                tier
+                status
         );
     }
 
