@@ -2,7 +2,7 @@ package com.elderaid.platform.review;
 
 import com.elderaid.platform.domain.task.TaskCategory;
 import com.elderaid.platform.domain.user.UserRole;
-import com.elderaid.platform.domain.worker.VerificationTier;
+import com.elderaid.platform.domain.worker.VerificationStatus;
 import com.elderaid.platform.repository.WorkerProfileRepository;
 import com.elderaid.platform.web.dto.ApplyToTaskRequest;
 import com.elderaid.platform.web.dto.CreateElderlyProfileRequest;
@@ -195,7 +195,7 @@ class ReviewFlowIntegrationTest {
         String accessToken = registerAndGetAccessToken(email, UserRole.WORKER);
         UUID userId = extractUserId(accessToken);
         var workerProfile = workerProfileRepository.findByUserId(userId).orElseThrow();
-        workerProfile.setVerificationTier(VerificationTier.TIER1_ID_VERIFIED);
+        workerProfile.setVerificationStatus(VerificationStatus.VERIFIED);
         workerProfileRepository.save(workerProfile);
         return accessToken;
     }

@@ -4,7 +4,7 @@ import com.elderaid.platform.domain.task.ApplicationStatus;
 import com.elderaid.platform.domain.task.TaskApplication;
 import com.elderaid.platform.domain.task.TaskRequest;
 import com.elderaid.platform.domain.task.TaskStatus;
-import com.elderaid.platform.domain.worker.VerificationTier;
+import com.elderaid.platform.domain.worker.VerificationStatus;
 import com.elderaid.platform.domain.worker.WorkerProfile;
 import com.elderaid.platform.exception.ForbiddenOperationException;
 import com.elderaid.platform.exception.ResourceNotFoundException;
@@ -44,7 +44,7 @@ public class TaskApplicationService {
         // NONE-tier workers haven't passed even basic ID verification yet -
         // block applications until the verification step is in place. Bump a
         // worker's tier manually in the DB for now to test past this.
-        if (workerProfile.getVerificationTier() == VerificationTier.NONE) {
+        if (workerProfile.getVerificationStatus() != VerificationStatus.VERIFIED) {
             throw new ForbiddenOperationException("NEEDS_VERIFICATION",
                     "Account must complete identity verification before applying to tasks");
         }

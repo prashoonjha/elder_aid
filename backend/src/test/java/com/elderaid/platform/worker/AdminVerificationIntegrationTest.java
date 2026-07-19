@@ -3,7 +3,7 @@ package com.elderaid.platform.worker;
 import com.elderaid.platform.domain.user.AppUser;
 import com.elderaid.platform.domain.user.UserRole;
 import com.elderaid.platform.domain.user.UserStatus;
-import com.elderaid.platform.domain.worker.VerificationTier;
+import com.elderaid.platform.domain.worker.VerificationStatus;
 import com.elderaid.platform.repository.UserRepository;
 import com.elderaid.platform.repository.WorkerProfileRepository;
 import com.elderaid.platform.security.JwtService;
@@ -63,7 +63,7 @@ class AdminVerificationIntegrationTest {
     private JwtService jwtService;
 
     @Test
-    void approvingIdAndSelfieDocumentsPromotesWorkerToTier1() throws Exception {
+    void approvingIdAndSelfieDocumentsVerifiesWorker() throws Exception {
         RegisterRequest workerRegistration = new RegisterRequest(
                 "hyvaksytty@example.com", "Hyva", "Tyontekija",
                 "TurvallinenSalasana1", null, UserRole.WORKER, true, "fi");
@@ -107,7 +107,7 @@ class AdminVerificationIntegrationTest {
 
         UUID workerUserId = extractUserId(workerAccessToken);
         var workerProfile = workerProfileRepository.findByUserId(workerUserId).orElseThrow();
-        assertThat(workerProfile.getVerificationTier()).isEqualTo(VerificationTier.TIER1_ID_VERIFIED);
+        assertThat(workerProfile.getVerificationStatus()).isEqualTo(VerificationStatus.VERIFIED);
     }
 
     private String seedAdminAndGetAccessToken(String email) {
