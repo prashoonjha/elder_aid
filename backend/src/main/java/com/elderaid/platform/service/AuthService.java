@@ -69,15 +69,20 @@ public class AuthService {
         if (request.role() == UserRole.ADMIN) {
             throw new InvalidRegistrationRoleException();
         }
-        if (userRepository.existsByEmail(request.email())) {
-            throw new EmailAlreadyInUseException(request.email());
+
+        // Normalise here so "User@x.com" and "user@x.com" can't become two
+        // accounts, and so login lookups match regardless of how it's typed.
+        String email = normaliseEmail(request.email());
+
+        if (userRepository.existsByEmail(email)) {
+            throw new EmailAlreadyInUseException(email);
         }
 
         Set<UserRole> roles = new HashSet<>();
         roles.add(request.role());
 
         AppUser user = AppUser.builder()
-                .email(request.email())
+                .email(email)
                 .firstName(request.firstName())
                 .lastName(request.lastName())
                 .passwordHash(passwordEncoder.encode(request.password()))
@@ -117,7 +122,7 @@ public class AuthService {
 
     @Transactional
     public AuthResponse login(LoginRequest request) {
-        AppUser user = userRepository.findByEmail(request.email())
+        AppUser user = userRepository.findByEmail(normaliseEmail(request.email()))
                 .orElseThrow(InvalidCredentialsException::new);
 
         if (user.getStatus() != UserStatus.ACTIVE
@@ -190,5 +195,12 @@ public class AuthService {
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalStateException("SHA-256 not available", e);
         }
+    }
+
+    // Lower-cased and trimmed so casing/whitespace never splits one person
+    // into two accounts, or blocks a login. Locale.ROOT avoids the Turkish
+    // dotless-i problem, where "I".toLowerCase() isn't "i" in a tr locale.
+    private String normaliseEmail(String email) {
+        return email == null ? null : email.trim().toLowerCase(java.util.Locale.ROOT);
     }
 }
