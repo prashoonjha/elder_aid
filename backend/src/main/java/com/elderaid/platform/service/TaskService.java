@@ -10,6 +10,7 @@ import com.elderaid.platform.exception.ResourceNotFoundException;
 import com.elderaid.platform.repository.ElderlyProfileRepository;
 import com.elderaid.platform.repository.TaskRequestRepository;
 import com.elderaid.platform.repository.UserRepository;
+import com.elderaid.platform.util.TextNormaliser;
 import com.elderaid.platform.web.dto.CreateTaskRequest;
 import com.elderaid.platform.web.dto.TaskDetailResponse;
 import com.elderaid.platform.web.dto.TaskSummaryResponse;
@@ -64,7 +65,7 @@ public class TaskService {
                 .locationLat(request.locationLat())
                 .locationLng(request.locationLng())
                 .addressLine(request.addressLine())
-                .city(request.city())
+                .city(TextNormaliser.city(request.city()))
                 .scheduledStart(request.scheduledStart())
                 .scheduledEnd(request.scheduledEnd())
                 .priceOffered(request.priceOffered())
@@ -158,4 +159,5 @@ public class TaskService {
                 task.getCreatedAt()
         );
     }
+
 }

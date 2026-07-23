@@ -7,6 +7,7 @@ import com.elderaid.platform.domain.user.AppUser;
 import com.elderaid.platform.exception.ForbiddenOperationException;
 import com.elderaid.platform.exception.InvalidRequestException;
 import com.elderaid.platform.exception.ResourceNotFoundException;
+import com.elderaid.platform.util.TextNormaliser;
 import com.elderaid.platform.repository.ElderlyProfileRepository;
 import com.elderaid.platform.repository.FamilyLinkRepository;
 import com.elderaid.platform.repository.UserRepository;
@@ -49,7 +50,7 @@ public class ElderlyProfileService {
                 .lastName(request.lastName())
                 .dateOfBirth(request.dateOfBirth())
                 .addressLine(request.addressLine())
-                .city(request.city())
+                .city(TextNormaliser.city(request.city()))
                 .postalCode(request.postalCode())
                 .preferredLanguage(request.preferredLanguage() != null ? request.preferredLanguage() : "fi");
 
