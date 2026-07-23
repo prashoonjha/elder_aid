@@ -8,6 +8,9 @@ import { submitReview } from '../api/reviews';
 import { StarRating } from '../components/ui/StarRating';
 import { TASK_CATEGORIES } from '../constants/taskCategories';
 
+// Mirrors the backend's @Size(max = 2000) on CreateReviewRequest.comment.
+const REVIEW_COMMENT_MAX = 2000;
+
 const STATUS_STYLES: Record<string, string> = {
   CONFIRMED: 'bg-blue-50 text-blue-700',
   CHECKED_IN: 'bg-amber-50 text-amber-700',
@@ -128,10 +131,19 @@ export function TaskBookingStatusPage() {
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                   placeholder={t('review.commentPlaceholder')}
-                  maxLength={2000}
+                  maxLength={REVIEW_COMMENT_MAX}
                   rows={2}
-                  className="mb-3 w-full rounded-field border border-brand-border bg-brand-surface px-3 py-2 text-sm text-slate-900 outline-none ring-brand-accent placeholder:text-brand-textMuted focus:ring-2"
+                  className="w-full rounded-field border border-brand-border bg-brand-surface px-3 py-2 text-sm text-slate-900 outline-none ring-brand-accent placeholder:text-brand-textMuted focus:ring-2"
                 />
+                {/* Only worth showing once they're typing - the comment is
+                    optional, so "0 / 2000" on an empty box is just noise. */}
+                <p
+                  className={`mb-3 mt-1 text-right text-xs ${
+                    comment.length >= REVIEW_COMMENT_MAX - 100 ? 'text-amber-600' : 'text-brand-textMuted'
+                  } ${comment.length === 0 ? 'invisible' : ''}`}
+                >
+                  {comment.length} / {REVIEW_COMMENT_MAX}
+                </p>
                 {reviewMutation.isError && (
                   <p className="mb-3 text-xs text-red-600">{t('review.error')}</p>
                 )}
