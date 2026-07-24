@@ -83,7 +83,7 @@ public class TaskService {
 
     @Transactional(readOnly = true)
     public List<TaskDetailResponse> listMine(UUID callerId) {
-        return taskRequestRepository.findByPostedByUserIdOrderByCreatedAtDesc(callerId).stream()
+        return taskRequestRepository.findMineOrdered(callerId, OffsetDateTime.now()).stream()
                 .map(this::toDetail)
                 .toList();
     }
