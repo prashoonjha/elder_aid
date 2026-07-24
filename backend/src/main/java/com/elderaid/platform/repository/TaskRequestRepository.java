@@ -14,7 +14,20 @@ import java.util.UUID;
 
 public interface TaskRequestRepository extends JpaRepository<TaskRequest, UUID> {
 
+    // Used by the GDPR export, which wants creation order rather than schedule order.
     List<TaskRequest> findByPostedByUserIdOrderByCreatedAtDesc(UUID postedByUserId);
+
+    // Upcoming tasks soonest-first, then past ones most-recent-first, so what's
+    // actually coming up sits at the top instead of old tasks.
+    @Query("""
+            SELECT t FROM TaskRequest t
+            WHERE t.postedByUser.id = :userId
+            ORDER BY
+                CASE WHEN t.scheduledStart >= :now THEN 0 ELSE 1 END,
+                CASE WHEN t.scheduledStart >= :now THEN t.scheduledStart END ASC,
+                CASE WHEN t.scheduledStart < :now THEN t.scheduledStart END DESC
+            """)
+    List<TaskRequest> findMineOrdered(@Param("userId") UUID userId, @Param("now") OffsetDateTime now);
 
     // category is optional - passing null skips that filter rather than
     // matching nothing. Only ever shows OPEN tasks scheduled in the future,
