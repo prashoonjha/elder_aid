@@ -80,6 +80,11 @@
         "title": "Omat varaukset",
         "description": "Kirjaudu sisään ja ulos vahvistetuista töistä"
       }
+    },
+    "verifyPrompt": {
+      "title": "Viimeistele tunnistautuminen",
+      "description": "Lataa henkilökortti ja selfie aloittaaksesi tehtäviin hakemisen.",
+      "cta": "Vahvista →"
     }
   },
   "elderlyProfile": {
@@ -325,5 +330,29 @@
     "terms": "Käyttöehdot",
     "comingSoon": "Tämä sivu julkaistaan myöhemmin. Voit ladata tai poistaa kaikki tietosi tilisi asetuksista milloin tahansa.",
     "backHome": "Takaisin etusivulle"
+  },
+  "verification": {
+    "title": "Tunnistautuminen",
+    "subtitle": "Tunnistautuneet auttajat voivat hakea tehtäviin. Lataa dokumenttisi alle.",
+    "statusVerified": "Vahvistettu",
+    "statusUnverified": "Ei vielä vahvistettu",
+    "progress": "{{count}} / {{total}} dokumenttia hyväksytty",
+    "docTypes": {
+      "ID_CARD": "Henkilökortti",
+      "SELFIE": "Selfie"
+    },
+    "approved": "Hyväksytty",
+    "pending": "Odottaa",
+    "rejected": "Hylätty",
+    "rejectedReason": "Hylätty: {{reason}}",
+    "upload": "Lataa tiedosto",
+    "reupload": "Lataa uudelleen",
+    "uploading": "Ladataan...",
+    "fileHint": "JPEG, PNG tai PDF, enintään 10 Mt",
+    "approvedNote": "Tämä dokumentti on hyväksytty.",
+    "pendingNote": "Lähetetty ja odottaa tarkistusta.",
+    "uploadError": "Lataus epäonnistui. Yritä uudelleen.",
+    "errorType": "Tiedostotyyppiä ei tueta. Käytä JPEG, PNG tai PDF.",
+    "errorSize": "Tiedosto on liian suuri. Enimmäiskoko on 10 Mt."
   }
 }

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './routes/ProtectedRoute';
 import { LandingPage } from './pages/LandingPage';
+import { VerificationPage } from './pages/VerificationPage';
 import { LegalPlaceholderPage } from './pages/LegalPlaceholderPage';
 import { ForWhomPage } from './pages/ForWhomPage';
 import { RegisterPage } from './pages/RegisterPage';
@@ -47,6 +48,7 @@ export function App() {
             <Route path="/tasks/mine/:taskId/review" element={<TaskApplicationsReviewPage />} />
             <Route path="/tasks/mine/:taskId/booking" element={<TaskBookingStatusPage />} />
             <Route path="/tasks" element={<TaskBrowsePage />} />
+            <Route path="/verification" element={<VerificationPage />} />
             <Route path="/tasks/:taskId" element={<TaskDetailPage />} />
             <Route path="/bookings/mine" element={<MyBookingsPage />} />
             <Route path="/settings/privacy" element={<PrivacySettingsPage />} />
