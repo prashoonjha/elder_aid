@@ -33,9 +33,7 @@ export function DashboardPage() {
   const canManageProfiles = user?.roles.some((role) => role === 'CLIENT' || role === 'FAMILY_MEMBER') ?? false;
   const isWorker = user?.roles.includes('WORKER') ?? false;
 
-  // Workers are the only role with a verification tier; NONE means they've
-  // submitted nothing yet, so there's nothing worth badging.
-  const isVerified = isWorker && user?.verificationTier != null && user.verificationTier !== 'NONE';
+  const isVerified = isWorker && user?.verificationStatus === 'VERIFIED';
 
   const roleLabel = isWorker ? t('dashboard.roleWorker') : t('dashboard.roleFamily');
 
@@ -73,6 +71,22 @@ export function DashboardPage() {
             </button>
           </div>
         </header>
+
+        {isWorker && !isVerified && (
+          <button
+            onClick={() => navigate('/verification')}
+            className="mb-4 flex w-full items-center justify-between rounded-card bg-brand-accentLight p-4 text-left transition-shadow hover:shadow-card"
+          >
+            <div className="flex items-center gap-3">
+              <ShieldCheck size={22} className="text-brand-accentDark" />
+              <div>
+                <p className="text-sm font-semibold text-brand-accentDark">{t('dashboard.verifyPrompt.title')}</p>
+                <p className="text-xs text-brand-accentDark/80">{t('dashboard.verifyPrompt.description')}</p>
+              </div>
+            </div>
+            <span className="text-sm font-semibold text-brand-accentDark">{t('dashboard.verifyPrompt.cta')}</span>
+          </button>
+        )}
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {canManageProfiles && (

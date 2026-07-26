@@ -80,6 +80,11 @@
         "title": "My bookings",
         "description": "Check in and out of confirmed work"
       }
+    },
+    "verifyPrompt": {
+      "title": "Complete your verification",
+      "description": "Upload your ID and selfie to start applying to tasks.",
+      "cta": "Verify →"
     }
   },
   "elderlyProfile": {
@@ -325,5 +330,29 @@
     "terms": "Terms of service",
     "comingSoon": "This page is coming soon. In the meantime, you can export or delete all of your data from your account settings at any time.",
     "backHome": "Back to home"
+  },
+  "verification": {
+    "title": "Verification",
+    "subtitle": "Verified helpers can apply to tasks. Upload your documents below.",
+    "statusVerified": "Verified",
+    "statusUnverified": "Not yet verified",
+    "progress": "{{count}} of {{total}} documents approved",
+    "docTypes": {
+      "ID_CARD": "ID card",
+      "SELFIE": "Selfie"
+    },
+    "approved": "Approved",
+    "pending": "Pending",
+    "rejected": "Rejected",
+    "rejectedReason": "Rejected: {{reason}}",
+    "upload": "Upload file",
+    "reupload": "Re-upload file",
+    "uploading": "Uploading...",
+    "fileHint": "JPEG, PNG or PDF, max 10MB",
+    "approvedNote": "This document has been approved.",
+    "pendingNote": "Submitted and awaiting review.",
+    "uploadError": "Upload failed. Please try again.",
+    "errorType": "Unsupported file type. Use JPEG, PNG or PDF.",
+    "errorSize": "File is too large. Maximum size is 10MB."
   }
 }
