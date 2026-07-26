@@ -7,20 +7,6 @@
     "showPassword": "Show password",
     "hidePassword": "Hide password"
   },
-  "welcome": {
-    "title": "Welcome",
-    "subtitle": "How can we help you?",
-    "needHelp": {
-      "title": "I need help",
-      "subtitle": "For myself or a loved one"
-    },
-    "wantToHelp": {
-      "title": "I want to help",
-      "subtitle": "Earn money by offering help"
-    },
-    "haveAccount": "Already have an account?",
-    "logIn": "Log in"
-  },
   "forWhom": {
     "title": "For whom?",
     "subtitle": "Who needs help?",
@@ -259,5 +245,85 @@
     "submit": "Submit rating",
     "submitting": "Submitting...",
     "error": "Could not submit your rating. Please try again."
+  },
+  "landing": {
+    "nav": {
+      "howItWorks": "How it works",
+      "about": "About",
+      "contact": "Contact",
+      "logIn": "Log in",
+      "getStarted": "Get started",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu"
+    },
+    "hero": {
+      "badge": "Verified helpers",
+      "title": "Everyday help, close to home.",
+      "subtitle": "We connect older people and their families with trusted helpers for errands, walks and companionship.",
+      "needHelp": "I need help",
+      "wantToHelp": "I want to help"
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "subtitle": "Three steps to getting help.",
+      "post": {
+        "title": "Post a task",
+        "description": "Say what you need, when, and what you'll pay."
+      },
+      "choose": {
+        "title": "Choose a helper",
+        "description": "Review applicants and their ratings, then accept the one you want."
+      },
+      "follow": {
+        "title": "Follow and rate",
+        "description": "See when your helper arrives, and rate them afterwards."
+      }
+    },
+    "about": {
+      "title": "About us",
+      "paragraph1": "ElderAid started from a simple observation: many older people need small everyday help - a trip to the shop, someone to walk with, company in the afternoon - but finding the right person is hard.",
+      "paragraph2": "We're building a service where every helper verifies their identity, and where family members can follow along from a distance.",
+      "features": {
+        "verified": {
+          "title": "Verified helpers",
+          "description": "Every helper confirms their identity."
+        },
+        "privacy": {
+          "title": "Your data, your control",
+          "description": "Export or delete it at any time."
+        },
+        "bilingual": {
+          "title": "Bilingual",
+          "description": "Finnish and English throughout."
+        },
+        "ratings": {
+          "title": "Ratings",
+          "description": "See a helper's previous reviews."
+        }
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "Questions? We'd be glad to hear from you.",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address"
+    },
+    "footer": {
+      "tagline": "Everyday help, close to home.",
+      "service": "Service",
+      "forHelpers": "For helpers",
+      "legal": "Legal",
+      "privacyPolicy": "Privacy policy",
+      "terms": "Terms of service",
+      "copyright": "© {{year}} Prashoon Jha. All rights reserved.",
+      "madeIn": "Made in Finland"
+    }
+  },
+  "legal": {
+    "privacyPolicy": "Privacy policy",
+    "terms": "Terms of service",
+    "comingSoon": "This page is coming soon. In the meantime, you can export or delete all of your data from your account settings at any time.",
+    "backHome": "Back to home"
   }
 }
