@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './routes/ProtectedRoute';
-import { WelcomePage } from './pages/WelcomePage';
+import { LandingPage } from './pages/LandingPage';
+import { LegalPlaceholderPage } from './pages/LegalPlaceholderPage';
 import { ForWhomPage } from './pages/ForWhomPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { LoginPage } from './pages/LoginPage';
@@ -31,7 +32,9 @@ export function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<WelcomePage />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/privacy-policy" element={<LegalPlaceholderPage titleKey="legal.privacyPolicy" />} />
+          <Route path="/terms" element={<LegalPlaceholderPage titleKey="legal.terms" />} />
           <Route path="/register/for-whom" element={<ForWhomPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />

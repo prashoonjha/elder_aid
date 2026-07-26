@@ -7,20 +7,6 @@
     "showPassword": "Näytä salasana",
     "hidePassword": "Piilota salasana"
   },
-  "welcome": {
-    "title": "Tervetuloa",
-    "subtitle": "Miten voimme auttaa sinua?",
-    "needHelp": {
-      "title": "Tarvitsen apua",
-      "subtitle": "Itselleni tai laheiselleni"
-    },
-    "wantToHelp": {
-      "title": "Haluan auttaa",
-      "subtitle": "Tienaa apua tarjoamalla"
-    },
-    "haveAccount": "Onko sinulla jo tili?",
-    "logIn": "Kirjaudu sisään"
-  },
   "forWhom": {
     "title": "Kenelle?",
     "subtitle": "Kuka tarvitsee apua?",
@@ -259,5 +245,85 @@
     "submit": "Lähetä arvio",
     "submitting": "Lähetetään...",
     "error": "Arvion lähetys epäonnistui. Yritä uudelleen."
+  },
+  "landing": {
+    "nav": {
+      "howItWorks": "Näin se toimii",
+      "about": "Tietoa meistä",
+      "contact": "Yhteystiedot",
+      "logIn": "Kirjaudu",
+      "getStarted": "Aloita",
+      "openMenu": "Avaa valikko",
+      "closeMenu": "Sulje valikko"
+    },
+    "hero": {
+      "badge": "Tunnistautuneet auttajat",
+      "title": "Apua arkeen, läheltä.",
+      "subtitle": "Yhdistämme ikäihmiset ja heidän läheisensä luotettaviin auttajiin asiointiin, ulkoiluun ja seuranpitoon.",
+      "needHelp": "Etsin apua",
+      "wantToHelp": "Haluan auttaa"
+    },
+    "howItWorks": {
+      "title": "Näin se toimii",
+      "subtitle": "Kolme askelta avun saamiseen.",
+      "post": {
+        "title": "Julkaise tehtävä",
+        "description": "Kerro mitä tarvitset, milloin ja mihin hintaan."
+      },
+      "choose": {
+        "title": "Valitse auttaja",
+        "description": "Katso hakijoiden arviot ja hyväksy sopivin."
+      },
+      "follow": {
+        "title": "Seuraa ja arvioi",
+        "description": "Näet milloin auttaja saapuu ja voit arvioida jälkeenpäin."
+      }
+    },
+    "about": {
+      "title": "Tietoa meistä",
+      "paragraph1": "ElderAid syntyi havainnosta, että moni ikäihminen tarvitsee arkeensa pientä apua - kauppareissun, ulkoilukaverin tai seuraa iltapäivään - mutta sopivan auttajan löytäminen on vaikeaa.",
+      "paragraph2": "Rakennamme palvelua, jossa jokainen auttaja on tunnistautunut ja jossa läheiset voivat seurata tilannetta etänä.",
+      "features": {
+        "verified": {
+          "title": "Tunnistautuneet auttajat",
+          "description": "Jokainen auttaja vahvistaa henkilöllisyytensä."
+        },
+        "privacy": {
+          "title": "Tietosi hallinnassasi",
+          "description": "Lataa tai poista tietosi milloin tahansa."
+        },
+        "bilingual": {
+          "title": "Kaksikielinen",
+          "description": "Suomeksi ja englanniksi."
+        },
+        "ratings": {
+          "title": "Arviot",
+          "description": "Näet auttajan aiemmat arviot."
+        }
+      }
+    },
+    "contact": {
+      "title": "Yhteystiedot",
+      "subtitle": "Kysyttävää? Otathan yhteyttä.",
+      "email": "Sähköposti",
+      "phone": "Puhelin",
+      "address": "Osoite"
+    },
+    "footer": {
+      "tagline": "Apua arkeen, läheltä.",
+      "service": "Palvelu",
+      "forHelpers": "Auttajille",
+      "legal": "Tietosuoja",
+      "privacyPolicy": "Tietosuojaseloste",
+      "terms": "Käyttöehdot",
+      "copyright": "© {{year}} Prashoon Jha. Kaikki oikeudet pidätetään.",
+      "madeIn": "Tehty Suomessa"
+    }
+  },
+  "legal": {
+    "privacyPolicy": "Tietosuojaseloste",
+    "terms": "Käyttöehdot",
+    "comingSoon": "Tämä sivu julkaistaan myöhemmin. Voit ladata tai poistaa kaikki tietosi tilisi asetuksista milloin tahansa.",
+    "backHome": "Takaisin etusivulle"
   }
 }
