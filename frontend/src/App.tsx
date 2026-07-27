@@ -5,6 +5,8 @@ import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './routes/ProtectedRoute';
 import { LandingPage } from './pages/LandingPage';
 import { VerificationPage } from './pages/VerificationPage';
+import { AdminVerificationPage } from './pages/AdminVerificationPage';
+import { AdminRoute } from './routes/AdminRoute';
 import { LegalPlaceholderPage } from './pages/LegalPlaceholderPage';
 import { ForWhomPage } from './pages/ForWhomPage';
 import { RegisterPage } from './pages/RegisterPage';
@@ -52,6 +54,10 @@ export function App() {
             <Route path="/tasks/:taskId" element={<TaskDetailPage />} />
             <Route path="/bookings/mine" element={<MyBookingsPage />} />
             <Route path="/settings/privacy" element={<PrivacySettingsPage />} />
+          </Route>
+
+          <Route element={<AdminRoute />}>
+            <Route path="/admin/verification" element={<AdminVerificationPage />} />
           </Route>
         </Routes>
       </AuthProvider>

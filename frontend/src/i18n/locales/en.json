@@ -5,7 +5,8 @@
     "back": "Back",
     "loading": "Loading...",
     "showPassword": "Show password",
-    "hidePassword": "Hide password"
+    "hidePassword": "Hide password",
+    "cancel": "Cancel"
   },
   "forWhom": {
     "title": "For whom?",
@@ -354,5 +355,16 @@
     "uploadError": "Upload failed. Please try again.",
     "errorType": "Unsupported file type. Use JPEG, PNG or PDF.",
     "errorSize": "File is too large. Maximum size is 10MB."
+  },
+  "admin": {
+    "verification": {
+      "title": "Verification queue",
+      "emptyTitle": "All caught up",
+      "emptyDescription": "There are no documents waiting for review.",
+      "approve": "Approve",
+      "reject": "Reject",
+      "confirmReject": "Confirm rejection",
+      "reasonPlaceholder": "Reason for rejection (shown to the worker)"
+    }
   }
 }
