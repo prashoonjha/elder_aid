@@ -5,7 +5,8 @@
     "back": "Takaisin",
     "loading": "Ladataan...",
     "showPassword": "Näytä salasana",
-    "hidePassword": "Piilota salasana"
+    "hidePassword": "Piilota salasana",
+    "cancel": "Peruuta"
   },
   "forWhom": {
     "title": "Kenelle?",
@@ -354,5 +355,16 @@
     "uploadError": "Lataus epäonnistui. Yritä uudelleen.",
     "errorType": "Tiedostotyyppiä ei tueta. Käytä JPEG, PNG tai PDF.",
     "errorSize": "Tiedosto on liian suuri. Enimmäiskoko on 10 Mt."
+  },
+  "admin": {
+    "verification": {
+      "title": "Tarkistusjono",
+      "emptyTitle": "Kaikki käsitelty",
+      "emptyDescription": "Yhtään dokumenttia ei odota tarkistusta.",
+      "approve": "Hyväksy",
+      "reject": "Hylkää",
+      "confirmReject": "Vahvista hylkäys",
+      "reasonPlaceholder": "Hylkäyksen syy (näytetään auttajalle)"
+    }
   }
 }
