@@ -27,6 +27,7 @@ export function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [phone, setPhone] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,12 +39,23 @@ export function RegisterPage() {
     return <Navigate to="/" replace />;
   }
 
+  // User types the part after +358. Drop spaces and a leading 0 (people type
+  // "040..." out of habit, but +358 replaces that 0). Finnish mobiles start
+  // with 4 or 5 and are 9 digits nationally.
+  const phoneDigits = phone.replace(/\s/g, '').replace(/^0/, '');
+  const phoneValid = phoneDigits === '' || /^[45]\d{8}$/.test(phoneDigits);
+
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     setErrorMessage(null);
 
     if (password !== confirmPassword) {
       setErrorMessage(t('register.errors.passwordMismatch'));
+      return;
+    }
+
+    if (!phoneValid) {
+      setErrorMessage(t('register.errors.phoneInvalid'));
       return;
     }
 
@@ -55,6 +67,7 @@ export function RegisterPage() {
         firstName,
         lastName,
         password,
+        phone: phoneDigits ? `+358${phoneDigits}` : undefined,
         role: routeState.role,
         termsAccepted,
         locale: i18n.language === 'en' ? 'en' : 'fi',
@@ -138,6 +151,33 @@ export function RegisterPage() {
           {confirmPassword.length > 0 && confirmPassword !== password && (
             <p className="-mt-2 mb-3 text-xs text-red-600">{t('register.errors.passwordMismatch')}</p>
           )}
+
+          <div className="mb-4">
+            <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-brand-primary">
+              {t('register.phone')}
+            </label>
+            <div className="flex">
+              <span className="flex min-h-12 items-center rounded-l-field border border-r-0 border-brand-border bg-brand-surface px-3 text-base text-brand-textSecondary">
+                +358
+              </span>
+              <input
+                id="phone"
+                type="tel"
+                inputMode="numeric"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder={t('register.phonePlaceholder')}
+                aria-invalid={!phoneValid || undefined}
+                className={`min-h-12 w-full rounded-r-field border bg-white px-3.5 py-3 text-base text-brand-primary placeholder:text-brand-textMuted focus:outline-none focus:ring-4 focus:ring-brand-accent/15
+                  ${!phoneValid ? 'border-red-500 focus:border-red-500' : 'border-brand-border focus:border-brand-accent'}`}
+              />
+            </div>
+            {!phoneValid ? (
+              <p className="mt-1.5 text-sm text-red-600">{t('register.errors.phoneInvalid')}</p>
+            ) : (
+              <p className="mt-1.5 text-sm text-brand-textMuted">{t('register.phoneHint')}</p>
+            )}
+          </div>
 
           <CheckboxField
             label={t('register.termsLabel')}

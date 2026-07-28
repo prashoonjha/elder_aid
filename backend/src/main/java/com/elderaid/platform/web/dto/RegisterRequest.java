@@ -4,6 +4,7 @@ import com.elderaid.platform.domain.user.UserRole;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public record RegisterRequest(
@@ -24,6 +25,9 @@ public record RegisterRequest(
         @NotNull
         String password,
 
+        // Optional, but if given must be a Finnish mobile: +358 then 4 or 5
+        // and 8 more digits. The frontend sends it already normalised.
+        @Pattern(regexp = "^\\+358[45]\\d{8}$", message = "Phone must be a valid Finnish mobile number")
         String phone,
 
         @NotNull
