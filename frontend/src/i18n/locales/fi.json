@@ -33,13 +33,17 @@
       "emailInUse": "Tama sahkopostiosoite on jo kaytossa",
       "validation": "Tarkista tiedot ja yrita uudelleen",
       "generic": "Jotain meni pieleen. Yritä uudelleen.",
-      "passwordMismatch": "Salasanat eivät täsmää"
+      "passwordMismatch": "Salasanat eivät täsmää",
+      "phoneInvalid": "Anna kelvollinen suomalainen matkapuhelinnumero (alkaa 4 tai 5)."
     },
     "passwordStrength": {
       "tooShort": "Vähintään 10 merkkiä",
       "good": "Salasana on riittävän pitkä"
     },
-    "confirmPassword": "Vahvista salasana"
+    "confirmPassword": "Vahvista salasana",
+    "phone": "Puhelinnumero",
+    "phonePlaceholder": "40 123 4567",
+    "phoneHint": "Vapaaehtoinen. Suomalainen matkapuhelinnumero."
   },
   "login": {
     "email": "Sahkoposti",
