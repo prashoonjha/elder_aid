@@ -229,6 +229,9 @@
       "heading": "Poista tili",
       "description": "Tilisi poistetaan pysyvästi. Tätä ei voi perua.",
       "passwordLabel": "Vahvista salasanalla",
+      "confirmLabel": "Kirjoita sähköpostisi vahvistaaksesi",
+      "confirmHint": "Kirjoita {{email}} ottaaksesi poiston käyttöön.",
+      "confirmMismatch": "Sähköposti ei täsmää tiliisi.",
       "cta": "Poista tilini pysyvasti",
       "submitting": "Poistetaan..."
     },

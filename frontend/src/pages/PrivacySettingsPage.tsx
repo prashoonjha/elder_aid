@@ -11,9 +11,10 @@ import { exportMyData, deleteMyAccount } from '../api/users';
 export function PrivacySettingsPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   const [password, setPassword] = useState('');
+  const [confirmEmail, setConfirmEmail] = useState('');
   const [deleteError, setDeleteError] = useState<string | null>(null);
 
   const exportMutation = useMutation({
@@ -48,9 +49,17 @@ export function PrivacySettingsPage() {
     },
   });
 
+  // Require the user to type their own email before the account can be
+  // deleted, so an irreversible action can't happen on a stray click.
+  const emailConfirmed = confirmEmail.trim().toLowerCase() === user?.email?.toLowerCase();
+
   function handleDeleteSubmit(event: FormEvent) {
     event.preventDefault();
     setDeleteError(null);
+    if (!emailConfirmed) {
+      setDeleteError(t('privacy.delete.confirmMismatch'));
+      return;
+    }
     deleteMutation.mutate();
   }
 
@@ -79,11 +88,20 @@ export function PrivacySettingsPage() {
             required
           />
 
+          <TextField
+            label={t('privacy.delete.confirmLabel')}
+            hint={t('privacy.delete.confirmHint', { email: user?.email ?? '' })}
+            value={confirmEmail}
+            onChange={(e) => setConfirmEmail(e.target.value)}
+            autoComplete="off"
+            required
+          />
+
           {deleteError && <p className="mb-4 text-sm text-red-600">{deleteError}</p>}
 
           <button
             type="submit"
-            disabled={deleteMutation.isPending}
+            disabled={deleteMutation.isPending || !emailConfirmed || password.length === 0}
             className="rounded-control bg-red-700 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-red-800 disabled:opacity-50"
           >
             {deleteMutation.isPending ? t('privacy.delete.submitting') : t('privacy.delete.cta')}
