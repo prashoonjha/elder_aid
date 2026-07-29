@@ -229,6 +229,9 @@
       "heading": "Delete account",
       "description": "Your account will be permanently deleted. This cannot be undone.",
       "passwordLabel": "Confirm with your password",
+      "confirmLabel": "Type your email to confirm",
+      "confirmHint": "Enter {{email}} to enable deletion.",
+      "confirmMismatch": "The email doesn't match your account.",
       "cta": "Permanently delete my account",
       "submitting": "Deleting..."
     },
