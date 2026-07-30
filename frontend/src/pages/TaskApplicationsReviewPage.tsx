@@ -73,7 +73,7 @@ export function TaskApplicationsReviewPage() {
           {Icon && <Icon size={14} className="text-brand-accent" />}
           <span className="text-xs font-medium text-brand-accent">{categoryConfig && t(categoryConfig.labelKey)}</span>
         </div>
-        <h1 className="font-display mb-1 text-lg font-bold text-brand-primary">
+        <h1 className="font-display mb-1 line-clamp-2 text-lg font-bold text-brand-primary">
           {task.description || (categoryConfig && t(categoryConfig.labelKey))}
         </h1>
         <p className="mb-6 text-xs text-brand-textSecondary">

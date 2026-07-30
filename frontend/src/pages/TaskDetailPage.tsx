@@ -93,7 +93,7 @@ export function TaskDetailPage() {
           {Icon && <Icon size={15} className="text-brand-accent" />}
           <span className="text-xs font-medium text-brand-accent">{categoryConfig && t(categoryConfig.labelKey)}</span>
         </div>
-        <h1 className="font-display mb-3 text-lg font-bold text-brand-primary">
+        <h1 className="font-display mb-3 line-clamp-2 text-lg font-bold text-brand-primary">
           {task.description || (categoryConfig && t(categoryConfig.labelKey))}
         </h1>
 
