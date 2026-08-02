@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { formatCurrency } from '../lib/format';
 import { useQuery } from '@tanstack/react-query';
 import { browseOpenTasks, type TaskCategory, type TaskSummary } from '../api/tasks';
 import { TASK_CATEGORIES } from '../constants/taskCategories';
 
 export function TaskBrowsePage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [categoryFilter, setCategoryFilter] = useState<TaskCategory | 'ALL'>('ALL');
   const [page, setPage] = useState(0);
@@ -89,7 +90,7 @@ export function TaskBrowsePage() {
                   {task.city} · {new Date(task.scheduledStart).toLocaleString()}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold text-brand-primary">{task.priceOffered.toFixed(2)} €</span>
+                  <span className="text-sm font-bold text-brand-primary">{formatCurrency(task.priceOffered, i18n.language)}</span>
                   <span className="rounded-full bg-brand-accentLight px-2.5 py-1 text-[10px] font-medium text-brand-accentDark">
                     {t('taskBrowse.statusOpen')}
                   </span>

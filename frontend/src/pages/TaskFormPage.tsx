@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { formatCurrency } from '../lib/format';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { TextField } from '../components/ui/TextField';
@@ -11,7 +12,7 @@ import { TASK_CATEGORIES } from '../constants/taskCategories';
 import { calculateClientBreakdown, calculateWorkerPayout } from '../lib/pricing';
 
 export function TaskFormPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
   const profilesQuery = useQuery({
@@ -199,20 +200,20 @@ export function TaskFormPage() {
             <div className="mb-5 rounded-control border border-brand-border bg-brand-surface px-4 py-3">
               <div className="flex justify-between text-xs text-brand-textSecondary">
                 <span>{t('newTask.breakdown.task')}</span>
-                <span>{price.toFixed(2)} €</span>
+                <span>{formatCurrency(price, i18n.language)}</span>
               </div>
               <div className="mb-1.5 flex justify-between text-xs text-brand-textSecondary">
                 <span>{t('newTask.breakdown.serviceFee')}</span>
-                <span>{serviceFee.toFixed(2)} €</span>
+                <span>{formatCurrency(serviceFee, i18n.language)}</span>
               </div>
               <div className="flex justify-between border-t border-brand-border pt-1.5 text-sm font-bold text-brand-primary">
                 <span>{t('newTask.breakdown.total')}</span>
-                <span>{total.toFixed(2)} €</span>
+                <span>{formatCurrency(total, i18n.language)}</span>
               </div>
               {/* Not part of what the client pays - shown so they can see the
                   split rather than wondering where the commission goes. */}
               <p className="mt-2 border-t border-brand-border pt-2 text-xs text-brand-textMuted">
-                {t('newTask.breakdown.workerReceives', { amount: workerPayout.toFixed(2) })}
+                {t('newTask.breakdown.workerReceives', { amount: formatCurrency(workerPayout, i18n.language) })}
               </p>
             </div>
           )}

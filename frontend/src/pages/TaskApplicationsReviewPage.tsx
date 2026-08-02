@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { formatCurrency } from '../lib/format';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { ArrowLeft, Star } from 'lucide-react';
@@ -14,7 +15,7 @@ function initialsOf(firstName: string, lastName: string): string {
 
 export function TaskApplicationsReviewPage() {
   const { taskId } = useParams<{ taskId: string }>();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [actioningId, setActioningId] = useState<string | null>(null);
@@ -77,7 +78,7 @@ export function TaskApplicationsReviewPage() {
           {task.description || (categoryConfig && t(categoryConfig.labelKey))}
         </h1>
         <p className="mb-6 text-xs text-brand-textSecondary">
-          {new Date(task.scheduledStart).toLocaleString()} · {task.city} · {task.priceOffered.toFixed(2)} €
+          {new Date(task.scheduledStart).toLocaleString()} · {task.city} · {formatCurrency(task.priceOffered, i18n.language)}
         </p>
 
         <p className="mb-2.5 text-xs font-medium text-brand-primary">
