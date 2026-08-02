@@ -133,7 +133,7 @@
       "task": "Tehtava",
       "serviceFee": "Palvelumaksu (8%)",
       "total": "Veloitetaan sinulta",
-      "workerReceives": "Työntekijä saa {{amount}} € komission jälkeen."
+      "workerReceives": "Työntekijä saa {{amount}} komission jälkeen."
     },
     "cancel": "Peruuta",
     "submit": "Julkaise tehtävä",

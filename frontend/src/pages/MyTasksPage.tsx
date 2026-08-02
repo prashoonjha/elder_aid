@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { formatCurrency } from '../lib/format';
 import { useQuery } from '@tanstack/react-query';
 import { listMyTasks } from '../api/tasks';
 import { TASK_CATEGORIES } from '../constants/taskCategories';
@@ -13,7 +14,7 @@ const STATUS_STYLES: Record<string, string> = {
 };
 
 export function MyTasksPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
   const tasksQuery = useQuery({
@@ -68,7 +69,7 @@ export function MyTasksPage() {
                   {task.city} · {new Date(task.scheduledStart).toLocaleString()}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold text-brand-primary">{task.priceOffered.toFixed(2)} €</span>
+                  <span className="text-sm font-bold text-brand-primary">{formatCurrency(task.priceOffered, i18n.language)}</span>
                   <span className={`rounded-full px-2.5 py-1 text-[10px] font-medium ${STATUS_STYLES[displayStatus] ?? ''}`}>
                     {t(`myTasks.status.${displayStatus}`)}
                   </span>

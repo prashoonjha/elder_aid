@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { formatCurrency } from '../lib/format';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { isAxiosError } from 'axios';
@@ -32,7 +33,7 @@ function mapApplyErrorToTranslationKey(error: unknown): string {
 
 export function TaskDetailPage() {
   const { taskId } = useParams<{ taskId: string }>();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [hasApplied, setHasApplied] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -113,15 +114,15 @@ export function TaskDetailPage() {
         <div className="mb-5 rounded-control border border-brand-border bg-brand-surface px-4 py-3">
           <div className="flex justify-between text-xs text-brand-textSecondary">
             <span>{t('taskDetail.breakdown.taskPrice')}</span>
-            <span>{task.priceOffered.toFixed(2)} €</span>
+            <span>{formatCurrency(task.priceOffered, i18n.language)}</span>
           </div>
           <div className="mb-1.5 flex justify-between text-xs text-brand-textSecondary">
             <span>{t('taskDetail.breakdown.commission')}</span>
-            <span>-{commission.toFixed(2)} €</span>
+            <span>{`-${formatCurrency(commission, i18n.language)}`}</span>
           </div>
           <div className="flex justify-between border-t border-brand-border pt-1.5 text-sm font-bold text-brand-accentDark">
             <span>{t('taskDetail.breakdown.youEarn')}</span>
-            <span>{youEarn.toFixed(2)} €</span>
+            <span>{formatCurrency(youEarn, i18n.language)}</span>
           </div>
         </div>
 
