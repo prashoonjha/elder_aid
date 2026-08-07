@@ -1,3 +1,5 @@
+![CI](https://github.com/prashoonjha/elder_aid/actions/workflows/ci.yml/badge.svg)
+
 # ElderAid
 
 A bilingual (Finnish/English) platform connecting elderly people, or their family members, with verified
