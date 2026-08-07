@@ -38,6 +38,9 @@ export function RegisterPage() {
   if (!routeState?.role) {
     return <Navigate to="/" replace />;
   }
+  // Past the guard above routeState.role is guaranteed, but that narrowing
+  // doesn't reach the submit handler, so capture it here.
+  const registrationRole = routeState.role;
 
   // User types the part after +358. Drop spaces and a leading 0 (people type
   // "040..." out of habit, but +358 replaces that 0). Finnish mobiles start
@@ -68,14 +71,14 @@ export function RegisterPage() {
         lastName,
         password,
         phone: phoneDigits ? `+358${phoneDigits}` : undefined,
-        role: routeState.role,
+        role: registrationRole,
         termsAccepted,
         locale: i18n.language === 'en' ? 'en' : 'fi',
       });
       // Workers have nothing to set up before browsing tasks; clients and
       // family members need an elderly profile to exist before anything
       // else in the app makes sense, so send them there first.
-      const destination = routeState.role === 'WORKER' ? '/dashboard' : '/profiles/new';
+      const destination = registrationRole === 'WORKER' ? '/dashboard' : '/profiles/new';
       navigate(destination, { replace: true });
     } catch (error) {
       if (isAxiosError<{ errorCode?: string }>(error) && error.response?.data?.errorCode === 'EMAIL_ALREADY_IN_USE') {

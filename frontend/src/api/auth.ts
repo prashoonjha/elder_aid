@@ -1,6 +1,6 @@
 import { apiClient } from './client';
 
-export type UserRole = 'CLIENT' | 'FAMILY_MEMBER' | 'WORKER';
+export type UserRole = 'CLIENT' | 'FAMILY_MEMBER' | 'WORKER' | 'ADMIN';
 
 export interface AuthTokens {
   accessToken: string;

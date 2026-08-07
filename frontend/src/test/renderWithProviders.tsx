@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from 'react';
 import { render } from '@testing-library/react';
-import { MemoryRouter, type InitialEntry } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../i18n';
@@ -10,9 +10,9 @@ import { AuthProvider } from '../context/AuthContext';
 // i18n, and the auth context. This helper wraps a component in all of them
 // so individual tests don't have to repeat the boilerplate. A fresh
 // QueryClient per render keeps cached data from leaking between tests.
-// initialRoute accepts either a path string or a full location object (so
-// tests can pass router state).
-export function renderWithProviders(ui: ReactElement, initialRoute: InitialEntry = '/') {
+// initialRoute is the starting path for the in-memory router (so
+// tests can render a component as if at a given URL).
+export function renderWithProviders(ui: ReactElement, initialRoute: string | { pathname: string; state?: unknown } = '/') {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: { retry: false },
