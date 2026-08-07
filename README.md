@@ -73,5 +73,5 @@ frontend test suite runs with `npm test`.
 - [x] GDPR endpoints (data export, account deletion/anonymization including uploaded verification file cleanup)
 - [x] React frontend with Finnish/English i18n (auth, profiles, task posting/browsing/applying, application review, worker bookings/check-in-out, family booking status, reviews, and privacy settings)
 - [x] Backend integration tests (Testcontainers) and frontend unit tests (Vitest)
-- [ ] Worker verification document upload UI (backend done, frontend pending)
+- [x] Worker verification document upload UI, with admin review screen
 - [ ] CI/CD and deployment (EU region)
